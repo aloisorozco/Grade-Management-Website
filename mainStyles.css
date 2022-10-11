@@ -19,7 +19,7 @@
 
 #studentID{
     font-size: 120%;
-    background-color: burlywood;
+    background-color: #FFE0C9;
     margin-top: 5%;
     padding-left: 70px;
     padding-right: 70px;
@@ -37,11 +37,11 @@
 }
 
 #Navbox{
-    background-color: rgb(223, 223, 223);
+    background-color: #D9D9D9;
 }
 
 #Dashbox{
-    background-color: rgb(223, 223, 223);
+    background-color: #D9D9D9;
 }
 
 #Nav{
@@ -53,7 +53,7 @@ body{
 }
 
 nav{
-    background: rgb(223, 223, 223);
+    background: #D9D9D9;
     height: 80%;
     width: 100%;
 }
@@ -68,7 +68,7 @@ h1{
 li.NavList{
     padding: 2%;
     margin-top: 10%;
-    background-color: #f3d4ae;
+    background-color: #FFE0C9;
     width: 60%;
     margin-left: 20%;
 }
@@ -83,7 +83,7 @@ li.NavList a:hover{
 }
 
 div.Bodytitle{
-    background-color: #46a2fd;
+    background-color: #3B97D3;
 }
 
 label.logo{
@@ -129,11 +129,11 @@ div.NotifBorder{
     width: 40%;
     margin: auto;
     margin-top: 80px;
-    background-color: #f8dbb8;
+    background-color: #FFE0C9;
 }
 
 h3.NotifTitle{
-  background-color: rgb(230, 172, 97); 
+  background-color: #F69F60; 
   font-size: x-large;
   margin: 0; 
   padding: 1%; 
