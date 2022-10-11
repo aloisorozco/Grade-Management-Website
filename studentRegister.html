@@ -14,36 +14,51 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4" id="register-form-div">
-                    <form>
+                    <form action="studentLogin.html">
+                        <div class="mb-8" id="title-div">
+                            <p class="h2" id="register-title">Create your account</p>
+                        </div>
                         <div class="mb-3 text-div">
-                            <label for="first-name" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first-name">
+                            <div class="mb-2 ind-div">
+                                <label for="first-name" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="first-name">
+                            </div>
+                            <div class="mb-2 ind-div">
+                                <label for="last-name" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="last-name">
+                            </div>
                           </div>
                         <div class="mb-3 text-div">
-                          <label for="last-name" class="form-label">Last Name</label>
-                          <input type="text" class="form-control" id="last-name">
-                        </div>
-                        <div class="mb-3 text-div">
-                            <label for="student-id" class="form-label">Student ID</label>
-                            <input type="number" class="form-control" id="student-id">
+                            <div class="mb-2 ind-div">
+                                <label for="student-id" class="form-label">Student ID</label>
+                                <input type="number" class="form-control" id="student-id">
+                            </div>
+                            <div class="mb-2 ind-div">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
                           </div>
                         <div class="mb-3 text-div">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email">
                         </div>
                         <div class="mb-3 password-div">
-                          <label for="password" class="form-label">Password</label>
-                          <input type="password" class="form-control" id="password">
+                            <div class="mb-2 ind-div">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            <div class="mb-2 ind-div">
+                                <label for="password2" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="password2">
+                            </div>
                         </div>
-                        <div class="mb-3 password-div">
-                            <label for="password2" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="password2">
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
                 <div class="col-4"></div>
             </div>
         </div>
+        
     </body>
+    
 </html>

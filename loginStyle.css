@@ -1,3 +1,8 @@
+:root {
+    --greyblue: rgba(141, 153, 174,0.9);
+    --grey: rgba(222, 226, 230, 0.85);
+    --offwhite: #E2EAFC;
+}
 
 body {
     height: 100%;
@@ -49,9 +54,24 @@ body {
 #link-div{
     margin: 1em 2em;
     padding: 0.25em;
+    display: flex;
+    flex-direction: column;
+}
+
+#link-div > *:first-child {
+    display: block;
+    margin-bottom: 1em;
 }
 
 #login-div{
     margin: 1em 2em;
     padding: 0.25em;
+}
+
+input[type="text"], textarea {
+    background-color : var(--offwhite); 
+}
+
+input[type="password"], textarea {
+    background-color : var(--offwhite); 
 }
