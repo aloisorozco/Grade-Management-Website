@@ -22,6 +22,10 @@ input[type="text"], textarea {
     background-color : var(--offwhite); 
 }
 
+input[type="number"], textarea {
+    background-color : var(--offwhite); 
+}
+
 input[type="password"], textarea {
     background-color : var(--offwhite); 
 }
