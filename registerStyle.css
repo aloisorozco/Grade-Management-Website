@@ -1,0 +1,61 @@
+:root {
+    --greyblue: rgba(141, 153, 174,0.9);
+    --grey: rgba(222, 226, 230, 0.85);
+    --offwhite: #E2EAFC;
+}
+  
+
+body {
+    height: 100%;
+    width: 100%;
+    background-image: url("https://thumbs.dreamstime.com/b/montreal-quebec-canada-concordia-university-john-molson-building-includes-digitally-equipped-teaching-amphitheatres-175783503.jpg");
+    background-color: var(--greyblue);
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+
+input[type="text"], input[type="password"], input[type="number"] {
+    width: 80%;
+}
+
+input[type="text"], textarea {
+    background-color : var(--offwhite); 
+}
+
+input[type="number"], textarea {
+    background-color : var(--offwhite); 
+}
+
+input[type="password"], textarea {
+    background-color : var(--offwhite); 
+}
+
+.text-div, .password-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.ind-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#register-form-div{
+    background-color: var(--greyblue);
+    margin-top: 20vh;
+    padding: 2em;
+}
+
+#title-div{
+    margin: 1em;
+}
+
+#register-title{
+    color: #001937;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}

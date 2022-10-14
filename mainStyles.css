@@ -1,0 +1,175 @@
+*{
+    padding:0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    min-width: max-content;
+}
+
+#title{
+    display: inline-block;
+}
+
+#book{
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+}
+
+#studentID{
+    font-size: 120%;
+    background-color: #FFE0C9;
+    margin-top: 5%;
+    padding-left: 70px;
+    padding-right: 70px;
+    line-height: 260%;
+    text-align: center;
+}
+
+#logout{
+    height: 50px;
+    width: 60px;
+    margin-top: 20%;
+}
+
+#Navbox{
+    background-color: #D9D9D9;
+}
+
+#Dashbox{
+    background-color: #D9D9D9;
+}
+
+#Nav{
+    text-align: center;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav{
+    background: #D9D9D9;
+    height: 80%;
+    width: 100%;
+}
+
+h1{
+    text-align: center;
+    font-size: xx-large;
+    font: 'Monstrerrat', sans-serif;
+    margin-top: 25px;
+}
+
+li.NavList{
+    padding: 2%;
+    margin-top: 10%;
+    background-color: #FFE0C9;
+    width: 60%;
+    margin-left: 20%;
+}
+
+li.NavList a{
+    color: black;
+    font-size: large;
+}
+
+li.NavList a:hover{
+    color: blue;
+}
+
+div.Bodytitle{
+    background-color: #3B97D3;
+}
+
+label.logo{
+    color:black;
+    font-size: 35px;
+    line-height: 80px;
+}
+
+ul.title{
+    float: left;
+    margin-left: 20px;
+}
+
+ul.rightul{
+    float: right;
+    margin-right: 20px;
+}
+
+li.rightli{
+    display: inline-block;
+    line-height: 80%;
+    margin: 0 50px;
+}
+
+div.body{
+    height: 80vh;
+    margin-top: 5%;
+}
+
+section.Board{
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+    grid-template-rows: 1.3fr 15fr;
+    grid-gap: 0px 60px;
+    grid-auto-flow: column;
+    height: 80vh;
+}
+
+div.NotifBorder{
+    width: 40%;
+    margin: auto;
+    margin-top: 80px;
+    background-color: #FFE0C9;
+}
+
+h3.NotifTitle{
+  background-color: #F69F60; 
+  font-size: x-large;
+  margin: 0; 
+  padding: 1%; 
+  text-align: center; 
+  height: 30%;
+}
+
+div.NotifContent{
+    height: 100px;
+}
+
+a.DashLink{
+    color: black;
+}
+
+a.DashLink:hover{
+    color: blue;
+}
+
+div.Divider1{
+    margin-top: 4%;
+    margin-left: 15%;
+    width: 50%;
+    float: left;
+}
+
+div.Divider2{
+    margin-top: 4%;
+    width: 30%;
+    float: right;
+}
+
+div h4{
+    font-size: large;
+    padding: 2%;
+}
+
+
+
+
+
+
