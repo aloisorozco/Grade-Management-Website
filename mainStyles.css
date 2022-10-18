@@ -17,7 +17,7 @@
     margin-top: 10px;
 }
 
-#studentID{
+#studentID, #teacherName{
     font-size: 120%;
     background-color: #C1D3FE;
     margin-top: 5%;
@@ -127,6 +127,7 @@ div.maintitle{
     background-color: #023E8A;
     height: 50px;
     margin-top: 2%;
+    text-align: center;
 }
 
 div.maintitle p{
@@ -140,6 +141,7 @@ div.NotifBorder{
     margin: auto;
     margin-top: 50px;
     background-color: #E2EAFC;
+    
 }
 
 h3.NotifTitle{
@@ -178,5 +180,34 @@ div.Divider2{
 
 
 
+div.NotifBorder1{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: left;
+    margin-left: 10%;
+}
+div.NotifBorder2{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: right;
+    margin-right: 10%;
+}
+div.chart{
+    /*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+*/
+    float: left;
+    margin: center;
+
+}
 
 
