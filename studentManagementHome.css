@@ -1,58 +1,5 @@
-<<<<<<< HEAD
-*{
-    padding:0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-    min-width: max-content;
-}
-
-#title{
-    display: inline-block;
-}
-
-#book{
-    height: 50px;
-    width: 50px;
-    margin-top: 10px;
-}
-
-#studentID, #teacherName{
-    font-size: 120%;
-    background-color: #C1D3FE;
-    margin-top: 5%;
-    padding-left: 70px;
-    padding-right: 70px;
-    line-height: 260%;
-    text-align: center;
-}
-
-#logout{
-    height: 50px;
-    width: 60px;
-    margin-top: 20%;
-}
-
-#Navbox{
-    background-color: #DEE2E6;
-}
-
-#Nav{
-    text-align: center;
-}
-
-body{
-    font-family: 'Montserrat', sans-serif;
-}
-
-nav{
-    background: #023E8A;
-    height: 80%;
-=======
 html{
     height: 100%;
->>>>>>> f2cde75c41b8ecd1fbb8be5dd1de015e670160ed
     width: 100%;
 }
 body{
@@ -145,17 +92,7 @@ header{
 
 #sideNav h3{
     background-color: #023E8A;
-<<<<<<< HEAD
-    height: 50px;
-    margin-top: 2%;
-    text-align: center;
-}
-
-div.maintitle p{
-    font-size: xx-large;
-=======
     margin-top: 0px;
->>>>>>> f2cde75c41b8ecd1fbb8be5dd1de015e670160ed
     text-align: center;
     color: white;
     padding-top: 7%;
@@ -197,7 +134,7 @@ div.maintitle p{
     background-color: #E2EAFC;
     margin-left: 5%;
     margin-right: 5%;
-    height: 25%;
+    height: 40%;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -225,83 +162,10 @@ div.maintitle p{
     margin-right: 5%;
 }
 
-div.NotifBorder{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 30px;
-    background-color: #E2EAFC;
-    
-}
-
-a.DashLink{
-    color: white;
-}
-
-a.DashLink:hover{
-    color: blue;
-}
-
-div.Divider1{
-    margin-top: 2%;
-    margin-left: 15%;
-    width: 50%;
-    float: left;
-}
-
-div.Divider2{
-    margin-top: 2%;
-    width: 30%;
-    float: right;
-}
-
-h3.Dashtitle{
-    margin: 0px;
-}
-
-div.NotifContainer{
-    height: 40%;
-    overflow: scroll;
-    overflow-x: hidden;
-}
-
 a:link { text-decoration: none; }
 
 
-<<<<<<< HEAD
-div.NotifBorder1{
-    width: 25%;
-    margin: auto;
-    text-align: center;
-    margin-top: 50px;
-    background-color: #E2EAFC;
-    float: left;
-    margin-left: 10%;
-}
-div.NotifBorder2{
-    width: 25%;
-    margin: auto;
-    text-align: center;
-    margin-top: 50px;
-    background-color: #E2EAFC;
-    float: right;
-    margin-right: 10%;
-}
-div.chart{
-    /*
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-*/
-    float: left;
-    margin: center;
-
-}
-=======
 a:visited { text-decoration: none; }
->>>>>>> f2cde75c41b8ecd1fbb8be5dd1de015e670160ed
 
 
 a:hover { text-decoration: none; }
