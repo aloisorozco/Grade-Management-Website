@@ -10,53 +10,45 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div id="title">
-                <ul class="title">
-                    <li>
-                        <img src="PicturesMainPage/book.png" alt="Image of books" id="book">
-                    </li>
-                </ul>
-                <ul class="title">
-                    <li>
-                        <label class="logo">Student Management System</label>
-                    </li>
-                </ul>
+        <nav id="mainNav">
+            <div id="subSection">
+                <img src="book-stack.png" alt="Image of a book stack">
+                <p>Student Management System</p>
             </div>
 
-            <ul class="rightul">
-                <li class="rightli"><a href="teacherLogin.html"><img src="PicturesMainPage/logout.png" id="logout"></a></li>
-            </ul>
-            <ul  class="rightul">
-                <li class="rightli"><div id="teacherName">Dr. Aiman Hanna</div></li>
-            </ul>
+            <div id="subSection">
+                <p id="teacherName">Teacher Name</p>
+
+                <a href="teacherLogin.html">
+                    <div id="power">
+                        <img src="power.png" alt="Image of a power on/off button">
+                        <p>Logout</p>
+                    </div>
+                </a>
+               
+            </div>
         </nav>
     </header>
 
     <div class="sidebar">
-        <div class="sidetitle"><p>Navigation</p></div>
-        <div id="Navbox">
-            <ul id="Nav">
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">Assignment 1</a>
-                </li>
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">Assignment 2</a>
-                </li>
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">Assignment 3</a>
-                </li>
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">Midterm 1</a>
-                </li>
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">Add Assesment</a>
-                </li>
-                <li class="NavList">
-                    <a href="teacherAssessmentPage.html">View Data</a>
-                </li>
-            </ul>
-        </div>
+        <nav id="sideNav">
+            <h3>Navigation</h3>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 1</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 2</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 3</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Midterm</button>
+            </form>
+            <form action="#">
+                <button>Add assignment</button>
+            </form>
+        </nav>
     </div>
 
     <div class="mainbody">

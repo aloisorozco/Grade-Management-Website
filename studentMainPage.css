@@ -1,3 +1,4 @@
+
 html{
     height: 100%;
     width: 100%;
@@ -97,6 +98,13 @@ header{
 
 #sideNav h3{
     background-color: #023E8A;
+    height: 50px;
+    margin-top: 2%;
+    text-align: center;
+}
+
+div.maintitle p{
+    font-size: xx-large;
     margin-top: 0px;
     text-align: center;
     color: white;
@@ -140,7 +148,7 @@ header{
     background-color: #E2EAFC;
     margin-left: 5%;
     margin-right: 5%;
-    height: 40%;
+    height: 25%;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -168,9 +176,79 @@ header{
     margin-right: 5%;
 }
 
+div.NotifBorder{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 30px;
+    background-color: #E2EAFC;
+    
+}
+
+a.DashLink{
+    color: white;
+}
+
+a.DashLink:hover{
+    color: blue;
+}
+
+div.Divider1{
+    margin-top: 2%;
+    margin-left: 15%;
+    width: 50%;
+    float: left;
+}
+
+div.Divider2{
+    margin-top: 2%;
+    width: 30%;
+    float: right;
+}
+
+h3.Dashtitle{
+    margin: 0px;
+}
+
+div.NotifContainer{
+    height: 40%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 a:link { text-decoration: none; }
 
 
+div.NotifBorder1{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: left;
+    margin-left: 10%;
+}
+div.NotifBorder2{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: right;
+    margin-right: 10%;
+}
+div.chart{
+    /*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+*/
+    float: left;
+    margin: center;
+
+}
 a:visited { text-decoration: none; }
 
 
