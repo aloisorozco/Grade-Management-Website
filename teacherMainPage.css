@@ -134,7 +134,7 @@ header{
     background-color: #E2EAFC;
     margin-left: 5%;
     margin-right: 5%;
-    height: 25%;
+    height: 40%;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -160,46 +160,6 @@ header{
     height: 45%;
     margin-left: 5%;
     margin-right: 5%;
-}
-
-div.NotifBorder{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 30px;
-    background-color: #E2EAFC;
-}
-
-a.DashLink{
-    color: white;
-}
-
-a.DashLink:hover{
-    color: blue;
-}
-
-div.Divider1{
-    margin-top: 2%;
-    margin-left: 15%;
-    width: 50%;
-    float: left;
-}
-
-div.Divider2{
-    margin-top: 2%;
-    width: 30%;
-    float: right;
-}
-
-h3.Dashtitle{
-    margin: 0px;
-}
-
-div.NotifContainer{
-    height: 40%;
-    overflow: scroll;
-    overflow-x: hidden;
 }
 
 a:link { text-decoration: none; }
