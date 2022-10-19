@@ -1,174 +1,204 @@
-html{
-    height: 100%;
-    width: 100%;
-}
-body{
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    background-color:#8D99AE;
+*{
+    padding:0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    min-width: max-content;
 }
 
-header{
-    height: 7%;
-}
-#mainNav{
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    background-color:#023E8A;
-    padding: 0px 20px 0px 20px;
+#title{
+    display: inline-block;
 }
 
-#mainNav img{
-    height: 30px;
+#book{
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+}
+
+#studentID{
+    font-size: 120%;
+    background-color: #C1D3FE;
+    margin-top: 5%;
+    padding-left: 70px;
+    padding-right: 70px;
+    line-height: 260%;
     text-align: center;
 }
 
-#mainNav #subSection{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#logout{
+    height: 50px;
+    width: 60px;
+    margin-top: 20%;
 }
 
-#mainNav #subSection p{
-    margin:0px 5px 0px 5px;
+#Navbox{
+    background-color: #DEE2E6;
 }
 
-#mainNav #power img{
-    height: 15px;
+#Nav{
+    text-align: center;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav{
+    background: #023E8A;
+    height: 80%;
+    width: 100%;
+}
+
+h1{
+    text-align: center;
+    font-size: xx-large;
+    font: 'Monstrerrat', sans-serif;
+    margin-top: 25px;
+}
+
+li.NavList{
+    padding: 2%;
+    height: 50px;
+    background-color: #E2EAFC;
+    border: 1px solid;
+}
+
+li.NavList a{
+    color: black;
+    font-size: large;
+}
+
+li.NavList a:hover{
+    color: blue;
+}
+
+label.logo{
+    color:white;
+    font-size: 35px;
+    line-height: 80px;
+}
+
+ul.title{
+    float: left;
+    margin-left: 20px;
+}
+
+ul.rightul{
+    float: right;
+    margin-right: 20px;
+}
+
+li.rightli{
+    display: inline-block;
+    line-height: 80%;
+    margin: 0 50px;
+}
+
+div.sidebar{
+    background: #DEE2E6;
+    position: fixed;
+    width: 10%;
+    height: 100%;
+    margin-top: 1px;
+}
+
+div.sidetitle{
+    background-color: #023E8A;
+    height: 5%;
+}
+
+div.sidetitle p{
+    color: white;
+    font-size: x-large;
+    text-align: center;
+    padding-top: 7%;
+}
+
+div.mainbody{
+    background-color: #DEE2E6;
+    width: 80%;
+    height: 80vh;
+    margin-left: 15%;
+}
+
+div.maintitle{
+    background-color: #023E8A;
+    height: 50px;
+    margin-top: 2%;
+}
+
+div.maintitle p{
+    font-size: xx-large;
+    text-align: center;
+    color: white;
+}
+
+div.NotifBorder{
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+}
+
+div.NotifBorder1{
+    
+    width: 25%;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: left;
+    margin-left: 10%;
     
 }
-
-#mainNav #power p{
-    margin: 0px;
-}
-
-#mainNav #power {
-    text-align: center;
-    background-color: #EB5F5F;
-    padding: 2px;
-    height: 35px;
-    color: black;
-}
-
-#mainNav #power:hover {
-    text-align: center;
-    background-color:#f54747;
-    padding: 2px;
-    height: 35px;
-    color: black;
-}
-
-#teacherName{
-    color: black;
-    background-color: #C1D3FE;
-    height: 39px;
-    line-height: 39px;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-
-#content{
-    height: 93%;
-    display: flex;
-    justify-content: space-around;
-}
-
-#sideNav{
-    float: left;
-    margin-right: 0px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1px;
-    background-color: #DEE2E6;
-    width: 20vw;
-    height: 93%;
-    max-width: 200px;
-    position:absolute;
-    left: 0px;
-}
-
-#sideNav h3{
-    background-color: #023E8A;
-    margin-top: 0px;
-    text-align: center;
-    color: white;
-    padding-top: 7%;
-    padding-bottom: 7%;
-    margin-right: 0px;
-}
-
-#sideNav button{
+div.NotifBorder2{
+    width: 25%;
+    margin: auto;
+    margin-top: 50px;
     background-color: #E2EAFC;
-    border-color: #C8C8C8;
-    padding: 0.7em;
-    margin-bottom: 0.7em;
-    border: 0px;
+    float: right;
+    margin-right: 10%;
+    
+}
+div.class{
+    float: right;
 }
 
-#sideNav button:hover,button:active{
-    background-color: #C1D3FE;
-}
-
-#middleSection{
-    display: flex;
-    flex-direction: column;
-    background-color: #C8C8C8;
-    height: 85%;
-    margin-top: 3%;
-    width: 55%;
-}
-
-#middleSection h3{
-    background-color:#023E8A ;
-    margin-top: 0px;
-    text-align: center;
-    color: white;
-}
-
-#tableContainer{
-    display: flex;
-    justify-content: space-around;
-    background-color: #E2EAFC;
-    margin-left: 5%;
-    margin-right: 5%;
+h3.NotifTitle{
+    background-color: #C1D3FE; 
+    font-size: x-large;
+    margin: 0; 
+    padding: 1%; 
+    text-align: center; 
     height: 40%;
-    overflow: scroll;
-    overflow-x: hidden;
 }
 
-#titles{
-    display: flex;
-    justify-content: space-around;
-    background-color:#C1D3FE ;
-    margin-left: 5%;
-    margin-right: 5%;
+div.NotifContent{
+    height: 100px;
 }
 
-#titles h4{
-    margin: 0px;
+a.DashLink{
+    color: black;
 }
 
-#leftTable{
-    height: 100%;
+a.DashLink:hover{
+    color: blue;
 }
 
-#middleSection img{
-    margin-top: 1em;
-    height: 45%;
-    margin-left: 5%;
-    margin-right: 5%;
+div.Divider1{
+    margin-top: 4%;
+    margin-left: 15%;
+    width: 50%;
+    float: left;
 }
 
-a:link { text-decoration: none; }
+div.Divider2{
+    margin-top: 4%;
+    width: 30%;
+    float: right;
+}
 
 
-a:visited { text-decoration: none; }
 
 
-a:hover { text-decoration: none; }
-
-
-a:active { text-decoration: none; }
