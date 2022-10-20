@@ -155,13 +155,6 @@ header{
     height: 100%;
 }
 
-#middleSection img{
-    margin-top: 1em;
-    height: 45%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
 div.NotifBorder{
     display: flex;
     flex-direction: column;
@@ -197,9 +190,10 @@ h3.Dashtitle{
 }
 
 div.NotifContainer{
-    height: 40%;
+    height: 45%;
     overflow: scroll;
     overflow-x: hidden;
+    border-bottom: 1px solid;
 }
 
 a:link { text-decoration: none; }
