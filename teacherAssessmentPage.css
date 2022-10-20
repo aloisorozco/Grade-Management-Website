@@ -90,6 +90,11 @@ header{
     left: 0px;
 }
 
+#sideNav form {
+    display: inline;
+    width: 100%;
+}
+
 #sideNav h3{
     background-color: #023E8A;
     margin-top: 0px;
@@ -100,12 +105,13 @@ header{
     margin-right: 0px;
 }
 
-#sideNav button{
+#sideNav form button{
     background-color: #E2EAFC;
     border-color: #C8C8C8;
     padding: 0.7em;
     margin-bottom: 0.7em;
     border: 0px;
+    width: 100%;
 }
 
 #sideNav button:hover,button:active{

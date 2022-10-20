@@ -1,3 +1,4 @@
+
 html{
     height: 100%;
     width: 100%;
@@ -90,8 +91,21 @@ header{
     left: 0px;
 }
 
+#sideNav form {
+    display: inline;
+    width: 100%;
+}
+
 #sideNav h3{
     background-color: #023E8A;
+    height: 50px;
+    margin-top: 2%;
+    text-align: center;
+    color: white;
+}
+
+div.maintitle p{
+    font-size: xx-large;
     margin-top: 0px;
     text-align: center;
     color: white;
@@ -100,12 +114,13 @@ header{
     margin-right: 0px;
 }
 
-#sideNav button{
+#sideNav form button{
     background-color: #E2EAFC;
     border-color: #C8C8C8;
     padding: 0.7em;
     margin-bottom: 0.7em;
     border: 0px;
+    width: 100%;
 }
 
 #sideNav button:hover,button:active{
@@ -155,6 +170,13 @@ header{
     height: 100%;
 }
 
+#middleSection img{
+    margin-top: 1em;
+    height: 45%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 div.NotifBorder{
     display: flex;
     flex-direction: column;
@@ -162,6 +184,7 @@ div.NotifBorder{
     margin-left: 25%;
     margin-top: 30px;
     background-color: #E2EAFC;
+    
 }
 
 a.DashLink{
@@ -190,15 +213,43 @@ h3.Dashtitle{
 }
 
 div.NotifContainer{
-    height: 45%;
+    height: 40%;
     overflow: scroll;
     overflow-x: hidden;
-    border-bottom: 1px solid;
 }
 
 a:link { text-decoration: none; }
 
 
+div.NotifBorder1{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: left;
+    margin-left: 10%;
+}
+div.NotifBorder2{
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #E2EAFC;
+    float: right;
+    margin-right: 10%;
+}
+div.chart{
+    /*
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+*/
+    float: left;
+    margin: center;
+
+}
 a:visited { text-decoration: none; }
 
 
