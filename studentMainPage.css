@@ -12,6 +12,14 @@ body{
 header{
     height: 7%;
 }
+
+footer{
+    background-color: #023E8A;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 #mainNav{
     color: white;
     display: flex;
@@ -22,7 +30,6 @@ header{
 }
 
 #mainNav img{
-    height: 30px;
     text-align: center;
 }
 
@@ -36,42 +43,8 @@ header{
     margin:0px 5px 0px 5px;
 }
 
-#mainNav #power img{
-    height: 15px;
-    
-}
-
-#mainNav #power p{
-    margin: 0px;
-}
-
-#mainNav #power {
-    text-align: center;
-    background-color: #EB5F5F;
-    padding: 2px;
-    height: 35px;
-    color: black;
-}
-
-#mainNav #power:hover {
-    text-align: center;
-    background-color:#f54747;
-    padding: 2px;
-    height: 35px;
-    color: black;
-}
-
-#teacherName{
-    color: black;
-    background-color: #C1D3FE;
-    height: 39px;
-    line-height: 39px;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-
 #content{
-    height: 93%;
+    height: 85%;
     display: flex;
     justify-content: space-around;
 }
@@ -84,7 +57,7 @@ header{
     margin-top: 1px;
     background-color: #DEE2E6;
     width: 20vw;
-    height: 93%;
+    height: 85%;
     max-width: 200px;
     position:absolute;
     left: 0px;
@@ -206,3 +179,10 @@ a:hover { text-decoration: none; }
 
 
 a:active { text-decoration: none; }
+
+
+
+
+
+
+
