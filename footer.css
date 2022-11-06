@@ -15,6 +15,7 @@ div.footer-col{
 
 div.footer-col ul{
     list-style: none;
+    padding: 0;
 }
 
 div.footer-col h4{
@@ -55,4 +56,17 @@ div.footer-col ul li a{
 div.footer-col ul li a:hover{
     color: #ffffff;
     padding-left: 8px;
+}
+
+@media(max-width: 700px){
+    .footer-col{
+        width:25%;
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 500px){
+    .footer-col{
+        width: 100%;
+    }
 }
