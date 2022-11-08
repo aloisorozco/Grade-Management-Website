@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -10,55 +12,57 @@
     </head>
     <body>
         <nav></nav>
-        <div class="container-fluid text-center">
+        <div class="container-fluid text-center" id="container-div">
             <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4" id="register-form-div">
-                    <form action="teacherLogin.html">
+                <div class="col-xl-4 col-lg-3 col-sm-2"></div>
+                <div class="col-xl-4 col-lg-6 col-sm-8" id="register-form-div">
+                    <form action="studentLogin.html">
                         <div class="mb-8" id="title-div">
                             <p class="h2" id="register-title">Create your account</p>
                         </div>
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
-                                <label for="first-name" class="form-label">First Name</label>
+                                <label for="first-name" class="form-label" id="validFirstNameMsg">First Name</label>
                                 <input type="text" class="form-control" id="first-name">
+                                
                             </div>
                             <div class="mb-2 ind-div">
-                                <label for="last-name" class="form-label">Last Name</label>
+                                <label for="last-name" class="form-label" id="validLastNameMsg">Last Name</label>
                                 <input type="text" class="form-control" id="last-name">
                             </div>
                           </div>
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
-                                <label for="teacher-id" class="form-label">Teacher ID</label>
-                                <input type="number" class="form-control" id="teacher-id">
+                                <label for="student-id" class="form-label" id="validIdMsg">Teacher ID</label>
+                                <input type="number" class="form-control" id="student-id">
                             </div>
                             <div class="mb-2 ind-div">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label" id="validEmailMsg">Email</label>
                                 <input type="text" class="form-control" id="email">
                             </div>
                           </div>
                         <div class="mb-3 text-div">
                         </div>
-                        <div class="mb-3 password-div">
+                        <div class="mb-1 password-div">
                             <div class="mb-2 ind-div">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label" id="validPasswordMsg">Password</label>
                                 <input type="password" class="form-control" id="password">
                             </div>
                             <div class="mb-2 ind-div">
-                                <label for="password2" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="password2">
+                                <label for="confirmPassword" class="form-label" id="validConfirmMsg">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm-password">
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                        <div class="mt-1">
+                            <p id="passwordStructMsg">Password must be 8-20 chars long<br>& have at least 1 number</p>
+                            <button type="button" class="btn btn-primary" onclick="registerButtonClicked()">Register</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-4"></div>
+                <div class="col-xl-4 col-lg-3 col-sm-2"></div>
             </div>
         </div>
-        
+        <script src="registerScript.js"></script>
     </body>
     
 </html>
