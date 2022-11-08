@@ -1,13 +1,15 @@
-.action{
-    position: fixed;
-    top: 1.5%;
-    right: 1%;
+header #subSection{
+    z-index: 10;
+}
+
+.menu.active{
+    margin-right: 1em;
 }
 
 .action .profile{
     position: relative;
-    width: 4vh;
-    height: 4vh;
+    width: 4.1vh;
+    height: 4.1vh;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
@@ -24,11 +26,11 @@
 
 .action .menu{
     position: absolute;
-    top: 250%;
-    right: -10px;
+    top: 10%;
+    right: 0px;
     padding: 10px 20px;
     background: white;
-    width: 300%;
+    width: 150px;
     box-sizing: 0 5px 25px black;
     border-radius: 15px;
     transition: 0.5s;
@@ -37,7 +39,7 @@
 }
 
 .action .menu.active{
-    top: 180%;
+    top: 8%;
     visibility: visible;
     opacity: 1;
 }
@@ -86,4 +88,10 @@
 
 .action .menu ul li:hover a{
     color: #ff5d94;
+}
+
+@media (max-width: 400px){
+    .action .menu{
+        width: 100px;
+    }
 }

@@ -7,82 +7,182 @@
     <link rel="stylesheet" href="studentMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footer.css">
-
-    <script>
-        function activateMenu(){
-            const toggleMenu = document.querySelector('.menu');
-            toggleMenu.classList.toggle('active');
-        }
-    </script>
-
+    <script src="studentManagementHome.js"></script>
 </head>
 <body>
-
     <header>
         <nav id="mainNav">
             <div id="subSection">
-                <img src="book-stack.png" alt="Image of a book stack" height="30px">
+                <img onclick="menuToggler()" id="books" src="menu.png" alt="Image of a menu icon">
+                <img id="menuIcon" src="book-stack.png" alt="Image of a book stack">
                 <p>Student Management System</p>
             </div>
-
-            <div id="subSection">
-               <div class="action">
-                    <div class="profile" onclick="activateMenu();">
-                        <img src="ProfilePictures/profile_default.jpg" alt="Profile Picture">
+                <div id="subSection">
+                    <p id="teacherName">Teacher Name</p>
+                    <div class="action">
+                         <div class="profile" onclick="activateMenu();">
+                             <img src="ProfilePictures/profile_default.jpg" alt="Profile Picture">
+                         </div>
+                         <div class="menu">
+                             <h3>Menu</h3>
+                             <ul>
+                                 <li><img src="ProfilePictures/profile.png" alt=""><a href="#">Profile</a></li>
+                                 <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
+                                 <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
+                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="#">Logout</a></li>
+                             </ul>
+                         </div>
                     </div>
-                    <div class="menu">
-                        <h3>Student Name</h3>
-                        <ul>
-                            <li><img src="ProfilePictures/profile.png" alt=""><a href="#">Profile</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
-                            <li><img src="ProfilePictures/logout.png" alt=""><a href="#">Logout</a></li>
-                        </ul>
-                    </div>
-               </div>
-            </div>
+                 </div>
         </nav>
     </header>
 
     <div id="content">
+        <!--
         <nav id="sideNav">
-            <h3>To do</h3>
-            <button>Assignment 3</button>
-            <button>Assignment 4</button>
+            <h3>Navigation</h3>
+            <button>Assignment 1</button>
+            <button>Assignment 2</button>
             <button>Midterm</button>
+            <button>Assignment 3</button>
+            <button onclick="changeAssigmentName()">Add assignment</button>
         </nav>
-    
-    
+        -->
+  
+        
+        <nav id="sideNav">
+            <h3>Navigation</h3>
+            <form action="teacherAssessmentPage.html" onclick="menuToggler()">
+                <button>Assignment 1</button>
+            </form>
+            <form action="teacherAssessmentPage.html" onclick="menuToggler()">
+                <button>Assignment 2</button>
+            </form>
+            <form action="teacherAssessmentPage.html" onclick="menuToggler()">
+                <button>Assignment 3</button>
+            </form>
+            <form action="teacherAssessmentPage.html" onclick="menuToggler()">
+                <button>Midterm</button>
+            </form>
+            <form onclick="menuToggler(); changeAssignmentName()">
+                <button type="button">Add assignment</button>
+            </form>
+            
+        </nav>
+
+        <!---------------------------------------------------------- Default ---------------------------------------------------------->
         <div id="middleSection">
-            <h3>Dashboard</h3>
-            <div class="NotifContainer">
-                <div class="NotifBorder">
-                    <h3 class="Dashtitle"><a href="#" class="DashLink">Assignment 1</a></h3>
-                    <div>
-                        <div class="Divider1">
-                            <h4>Grade:</h4>
-                            <h4>Class Average:</h4>
-                        </div>
-                        <div class="Divider2">
-                            <h4>grade%</h4>
-                            <h4>grade%</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="NotifBorder">
-                    <h3 class="Dashtitle"><a href="#" class="DashLink">Assignment 2</a></h3>
-                    <div>
-                    <div class="Divider1">
-                        <h4>Grade:</h4>
-                        <h4>Class Average:</h4>
-                    </div>
-                    <div class="Divider2">
-                        <h4>grade%</h4>
-                        <h4>grade%</h4>
-                    </div>
-                    </div>
-                </div>
+            <h3 id="assignmentName">Selected Assignment</h3>
+
+            <div id="titles">
+                <h4>Grades</h4>
+                <h4>Statistics</h4>
             </div>
+
+            <div id="tableContainer">
+     
+                <div id="leftTable">
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+
+                </div>
+                <div id="lightTable">
+                    <p>Class mean: grade%</p>
+                    <p>Class median: grade%</p>
+                    <p>Standard deviation: grade%</p>
+                </div>
+
+            </div>
+            <img src="snd.png" alt="A gaussian distribution">
+        </div>
+
+        <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
+        <div id="middleSectionAssignment" style="display:none;">
+            <form id="questionsForm">
+
+
+                
+            <h3 id="assignmentName">Assignment builder</h3>
+
+            <div id="titles">
+                <h4>Informations</h4>
+            </div>
+
+            <div id="tableContainerAssignment">
+                
+                <div id="leftTable">
+                    <br>
+                    <span>Assignment Name</span>
+                    <br>
+                    <br>
+                    <span>Weight</span>
+                    <br>
+                    <br>
+                    <span>Number of Questions</span>
+                    <br>
+
+                </div>
+                <div id="lightTable">
+                    
+                        <br>
+                        <label>
+                            <input type="text">
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            <input type="number" maxlength="100">
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            <input type="number" oninput="addQuestion()" id="numberQuestionInput">
+                        </label>
+                        <br>
+                        
+                    
+                </div>
+                
+
+            </div>
+            <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
+            <h3 id="assignmentName">Questions</h3>
+
+            <div id="titles">
+                <h4>Question Number</h4>
+                <h4>Weight</h4>
+            </div>
+                <div id="tableContainer">
+                    <br id="spaceHolder">
+                    <div id="leftTableAssignment">
+                        
+                            
+                        
+                    </div>
+                    <div id="lightTableAssignment">
+                    
+                    </div>
+
+                </div>
+                <h4 id="submitButton">
+                    <input type="submit" name="submit"  value="Submit">
+                </h4>
+                
+        </form>
+        </div>
+
+
+
     </div>
 
     <footer>
@@ -115,5 +215,10 @@
             </div>
         </div>
     </footer>
+
+
+
+
+
 </body>
 </html>
