@@ -18,7 +18,7 @@
                 <p>Student Management System</p>
             </div>
                 <div id="subSection">
-                    <p id="teacherName">Teacher Name</p>
+                    <p id="teacherName">Student Name</p>
                     <div class="action">
                          <div class="profile" onclick="activateMenu();">
                              <img src="ProfilePictures/profile_default.jpg" alt="Profile Picture">
@@ -29,7 +29,7 @@
                                  <li><img src="ProfilePictures/profile.png" alt=""><a href="#">Profile</a></li>
                                  <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
                                  <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
-                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="#">Logout</a></li>
+                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
                              </ul>
                          </div>
                     </div>
@@ -64,15 +64,12 @@
             <form action="teacherAssessmentPage.html" onclick="menuToggler()">
                 <button>Midterm</button>
             </form>
-            <form onclick="menuToggler(); changeAssignmentName()">
-                <button type="button">Add assignment</button>
-            </form>
             
         </nav>
 
         <!---------------------------------------------------------- Default ---------------------------------------------------------->
         <div id="middleSection">
-            <h3 id="assignmentName">Selected Assignment</h3>
+            <h3 id="assignmentName">Grades</h3>
 
             <div id="titles">
                 <h4>Grades</h4>
