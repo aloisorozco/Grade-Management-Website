@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="expires" content="-1">
+        <title>Student Assessment Page</title>
+        <link rel="stylesheet" href="teacherAssessmentPage.css">
+        <link rel="stylesheet" href="studentAssessmentPage.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+       
+        
+    </head>
+    <body>
+        <script>
+
+            let grades =[
+                75.44,
+                75.46,
+                75.15,
+                74.57,
+                75.07,
+                88,
+                90
+                ];
+                    //below are the functions associated with displaying specific data
+                                
+            function average(array){
+            let average = array.reduce((a, b) => a + b, 0) / array.length;
+            return average;
+            }
+
+
+            function standardDeviation(array) {
+                const n = array.length
+                const mean = array.reduce((a, b) => a + b) / n
+                return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+            }
+
+
+            function median(array){
+                array.sort(function(a,b){
+                    return a-b;
+                });
+                
+                let half = Math.floor(array.length / 2);
+                
+                if (array.length % 2)
+                return array[half];
+                
+                return (array[half - 1] + array[half]) / 2.0;
+                
+                }
+
+            function round(number){
+                return Math.round(number*100)/100;
+                }
+
+        </script>
+        
+       
+        <header>
+            <nav id="mainNav">
+                <div id="subSection">
+                    <img src="book-stack.png" alt="Image of a book stack">
+                    <p>Student Management System</p>
+                </div>
+    
+                <div id="subSection">
+                    <p id="teacherName">Student ID: studentID</p>
+    
+                    <a href="studentLogin.html">
+                        <div id="power">
+                            <img src="power.png" alt="Image of a power on/off button">
+                            <p>Logout</p>
+                        </div>
+                    </a>
+                   
+                </div>
+            </nav>
+        </header>
+        <nav id="sideNav">
+            <h3>Navigation</h3>
+            <form action="studentAssessmentPage.html">
+                <button>Assignment 1</button>
+            </form>
+            <form action="studentAssessmentPage.html">
+                <button>Assignment 2</button>
+            </form>
+            <form action="studentAssessmentPage.html">
+                <button>Assignment 3</button>
+            </form>
+            <form action="studentAssessmentPage.html">
+                <button>Midterm</button>
+            </form>
+        </nav>
+        <div class="mainbody">
+            <div class="maintitle"><p>Assignment 1</p></div>
+            <div class="NotifBorder1">
+                <h3 class="NotifTitle">Grade</h3>
+                <div class="NotifContent">
+                    <div class="Divider1">
+                        <h4>Your Grade: </h4>
+                        
+                    </div>
+                    <div class="Divider2">
+                        <h4>80%</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="NotifBorder2">
+                <h3 class="NotifTitle">Statistics</h3>
+                <div class="NotifContent">
+                <div class="Divider1">
+                    <h4>Class Mean:</h4>
+                    <h4>Class Median:</h4>
+                    <h4>Class Mode:</h4>
+                    <h4>Standard Deviation:</h4>
+                </div>
+                <div class="Divider2">
+                    <h4><script>document.write(round(average(grades)))</script></h4>
+                    <h4><script>document.write(round(median(grades)))</script></h4>
+                    <h4><script>document.write(round(mode(grades)))</script></h4>
+                    <h4><script>document.write(round(standardDeviation(grades)))</script></h4>
+                </div>
+                <div>
+                    <canvas id = "myChart" height="50px" width="100px" Your browser does not support this canvas>
+                        <script>
+                            
+                            const labels = [
+                              'Assignment 1',
+                              'Assignment 2',
+                              'Assignment 3',
+                              'Assignment 4',
+                              'Labs',
+                              'Midterm',
+                              'Exam',
+                            ];
+                          
+                            const data = {
+                              labels: labels,
+                              datasets: [{
+                                label: 'Your Overall Grades',
+                                //backgroundColor: 'rgba(141, 153, 174,0.7)',
+                                //backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(240,248,255))',
+                                //borderColor: 'rgb(255, 99, 132)',
+                                color: 'rgb(240,248,255)',//font color
+                                tesnion: 0.4,
+                    
+                                data: grades,
+                              }]
+                            };
+                          
+                            const config = {
+                              type: 'line',
+                              data: data,
+                              options: {
+                                y: {
+                                    min: 0,
+                                    max: 100
+                                    
+                                }
+                                
+                              }
+                            };
+                    
+                    
+                            const myChart = new Chart(
+                            document.getElementById('myChart'),config);
+                            
+                    
+                           
+                            function addData(label, data) {
+                                myChart.data.labels.push(label);
+                                myChart.data.datasets.forEach((dataset) => {
+                                    dataset.data.push(data);
+                                });
+                                myChart.update();
+                            }
+                    
+                           
+                           
+                           function removeData(label,data) {
+                                myChart.data.labels.pop(label);
+                                
+                                myChart.data.datasets.forEach((dataset) => {
+                                    dataset.data.pop(data);
+                                });
+                                
+                                myChart.update();
+                            }
+                            </script>
+                        </canvas>
+                        
+                            
+                            
+
+                        </div>
+                </div>
+                
+                
+                
+                </div>
+            </div>
+          
+        </div>
+        
+    </body>
+</html>
+

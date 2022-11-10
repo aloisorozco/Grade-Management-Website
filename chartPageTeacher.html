@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="teacherAssessmentPage.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <script>
+        let grades =[
+            75.44,
+            75.46,
+            75.15,
+            74.57,
+            75.07,
+            88,
+            90
+            ];
+        let arr = [
+            10, 24, 32, 41, 49, 54, 67,  67,  70,  70, 72, 74, 76, 77, 77, 
+              77, 78, 80, 80, 81, 85, 85,  86,  88,  90, 91, 91, 91, 91, 92,
+              92, 92, 93, 96, 98, 98, 98, 101, 102, 102
+        ];
+
+             //below are the functions associated with displaying specific data
+                            
+        function average(array){
+            let average = array.reduce((a, b) => a + b, 0) / array.length;
+            return average;
+        }
+    
+        
+        function standardDeviation(array) {
+            const n = array.length
+            const mean = array.reduce((a, b) => a + b) / n
+            return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+        }
+        
+        
+        function median(array){
+            array.sort(function(a,b){
+                return a-b;
+            });
+            
+            let half = Math.floor(array.length / 2);
+            
+            if (array.length % 2)
+            return array[half];
+            
+            return (array[half - 1] + array[half]) / 2.0;
+            
+            }
+        
+        function round(number){
+            return Math.round(number*100)/100;
+         }
+
+    </script>
+    
+    <header>
+        <nav id="mainNav">
+            <div id="subSection">
+                <img src="book-stack.png" alt="Image of a book stack">
+                <p>Student Management System</p>
+            </div>
+
+            <div id="subSection">
+                <p id="teacherName">Teacher Name</p>
+
+                <a href="teacherLogin.html">
+                    <div id="power">
+                        <img src="power.png" alt="Image of a power on/off button">
+                        <p>Logout</p>
+                    </div>
+                </a>
+               
+            </div>
+        </nav>
+    </header>
+
+    <div id="content">
+        <nav id="sideNav">
+            <h3>Navigation</h3>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 1</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 2</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Assignment 3</button>
+            </form>
+            <form action="teacherAssessmentPage.html">
+                <button>Midterm</button>
+            </form>
+            <form action="#">
+                <button>Add assignment</button>
+            </form>
+            
+        </nav>
+    
+    
+        <div id="middleSection">
+            <h3>Selected Assignment</h3>
+
+            <div id="titles">
+                <h4>Grades</h4>
+                <h4>Statistics</h4>
+            </div>
+
+            <div id="tableContainer">
+     
+                <div id="leftTable">
+                    <p>Student Name: <script>document.write(arr[0])</script>></p>
+                    <p>Student Name: <script>document.write(arr[1])</script>></p>
+                    <p>Student Name: <script>document.write(arr[2])</script>></p>
+                    <p>Student Name: <script>document.write(arr[3])</script>></p>
+                    <p>Student Name: <script>document.write(arr[4])</script>></p>
+                    <p>Student Name: <script>document.write(arr[5])</script>></p>
+                    <p>Student Name: <script>document.write(arr[6])</script>></p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+                    <p>Student Name: grade%</p>
+
+                </div>
+                <div id="lightTable">
+                    <p>Class mean: <script>document.write(round(average(grades)))</script></p>
+                    <p>Class median: <script>document.write(round(median(grades)))</script></p>
+                    <p>Standard deviation: <script>document.write(round(standardDeviation(grades)))</script></p>
+                </div>
+
+            </div>
+            <canvas id = "myChart" height="25px" width = "100px">
+                <script>
+
+                   
+                    const labels = [
+                      'Assignment 1',
+                      'Assignment 2',
+                      'Assignment 3',
+                      'Assignment 4',
+                      'Labs',
+                      'Midterm',
+                      'Exam',
+                      
+                    ];
+                  
+                    const data = {
+                      labels: labels,
+                      datasets: [{
+                        label: 'Your Overall Grades',
+                        //backgroundColor: 'rgba(141, 153, 174,0.7)',
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(240,248,255))',
+                        //borderColor: 'rgb(255, 99, 132)',
+                        color: 'rgb(240,248,255)',//font color
+                        tesnion: 0.4,
+            
+                        data: grades,
+                      }]
+                    };
+                  
+                    const config = {
+                      type: 'line',
+                      data: data,
+                      options: {
+                        y: {
+                            min: 0,
+                            max: 100
+                            
+                        }
+                        
+                      }
+                    };
+            
+            
+                    const myChart = new Chart(
+                    document.getElementById('myChart'),config);
+                    
+            
+                   
+                    function addData(label, data) {
+                        myChart.data.labels.push(label);
+                        myChart.data.datasets.forEach((dataset) => {
+                            dataset.data.push(data);
+                        });
+                        myChart.update();
+                    }
+            
+                   
+                   
+                   function removeData(label,data) {
+                        myChart.data.labels.pop(label);
+                        
+                        myChart.data.datasets.forEach((dataset) => {
+                            dataset.data.pop(data);
+                        });
+                        
+                        myChart.update();
+                    }
+                    </script>
+            </canvas>
+            <div id = "addingData">
+                Enter Label for New Grade: <input type="text" name="Label" id="label" placeholder="Label"><br>
+                Enter Grade Given Label<input type="number" name="Grade" id="grade" placeholder="Grade"><br>                    
+                <button type="submit" id="insertData" onclick="updateChart()">Submit</button><br><br>
+            </div>
+            <div id = "removingData">
+                Remove data:<br>
+                Enter Label to Remove: <input type="text" id="label" placeholder="label"><br>
+                Enter Grade to Remove: <input type="number" id="grade" placeholder="grade"><br>
+                <button type="submit" id="removeData" onclick="removeChart()">Remove</button>
+            </div>
+
+            <canvas id= "myChartNorm" height="25px" width = "100px">
+                <script>
+
+                    
+                    const dataNorm = {
+                        labels: [
+                            "20%",
+                            "30%",
+                            "40%",
+                            "50%",
+                            "60%",
+                            "70%",
+                            "80%",
+                            "90%",
+                            "100%"
+                        ],
+                        datasets: [{
+                            //label: 'Normal Distribution',
+                            backgroundColor: 'rgb(115,215,255)',
+                            borderColor: 'black',
+                            data: arr,
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0
+                        }]
+                    };
+                    
+                    const configNorm = {
+                        type: 'bar',
+                        data: dataNorm,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        display: false
+                                    }
+                                }
+                            },
+                            annotation: {
+                                annotations: [
+                                    {
+                                        type: "line",
+                                        mode: "vertical",
+                                        scaleID: "x-axis-0",
+                                        value: "70%",
+                                        borderColor: "black",
+                                        label: {
+                                            content: "Your Score",
+                                            enabled: true,
+                                            position: "center"
+                                        }
+                                    }
+                                ]
+                            },
+                        }
+                    };
+                    
+                    const myChartNorm = new Chart(document.getElementById(("myChartNorm"),configNorm));
+                    
+                    
+                    </script>
+                </canvas>
+                
+                
+                
+                <script>
+                    function updateChart(){
+                    let label = document.getElementById("label").value;
+                    let grade = document.getElementById("grade").value;
+                    addData(label,grade);
+                }
+                function removeChart(){
+                    let label = document.getElementById("label").value;
+                    let grade = document.getElementById("grade").value;
+                    removeData(label,grade);
+
+
+                }
+
+            </script>
+            </div>
+            
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
