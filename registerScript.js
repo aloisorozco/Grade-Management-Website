@@ -20,10 +20,15 @@ function registerButtonClicked() {
         document.getElementById("confirm-password").style.border="none";
 
         if (window.location.pathname.includes("student")) {
-            window.location = "studentLogin.html";
+            //window.location = "studentLogin.html";
+            document.getElementById("studentRegisterForm").submit();
         }
         else {
-            window.location = "teacherLogin.html";
+            if (validateConfirm(email,document.getElementById("confirm-email").value)) {
+                document.getElementById("confirm-email").style.border="none";
+                document.getElementById("teacherRegisterForm").submit();
+                //window.location = "teacherLogin.html";
+            }
         }
     }
     else {
@@ -47,12 +52,23 @@ function registerButtonClicked() {
         }
         if (!validateEmail(email)) {
             console.log("invalid email");
+            console.log(email);
             document.getElementById("validEmailMsg").style.color=red;
             document.getElementById("email").style.border="solid 1px "+red;
         }
         else {
             document.getElementById("validEmailMsg").style.color="black";
             document.getElementById("email").style.border="none";
+        }
+        if (window.location.pathname.includes("teacher")) {
+            if (!validateConfirm(email, document.getElementById("confirm-email").value)) {
+                document.getElementById("validConfirmEmailMsg").style.color=red;
+                document.getElementById("confirm-email").style.border="solid 1px "+red;
+            }
+            else {
+                document.getElementById("validConfirmEmailMsg").style.color="black";
+                document.getElementById("confirm-email").style.border="none";
+            }
         }
         if (!validatePassword(password)) {
             console.log("invalid pss");

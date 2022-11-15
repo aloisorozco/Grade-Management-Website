@@ -1,3 +1,45 @@
+<?php 
+
+error_reporting(E_ERROR | E_PARSE);
+
+include "connectToDB.php";
+
+$error = "";
+
+class Student {};
+
+class Teacher {};
+
+if (isset($_POST['email'])) {
+
+    $q1 = "SELECT id, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+    $q2 = "INSERT INTO students (email, password, firstName, lastName, teacherId) VALUES (?,?,?,?,?)";
+    
+
+    $student = $pdo->query($q1)->fetchObject('Student');
+
+    if ($student->email == $_POST['email']) {
+        $error = "Email already exists";
+        
+    }
+    //else if {
+    //}
+    else {
+
+        //try {
+            $pdo->prepare($q2)->execute([$_POST['email'], $_POST['password'], $_POST['first-name'],$_POST['last-name'],$_POST['teacherOption']]);
+
+            header("Location: studentLogin.php");
+            exit();
+
+        //} catch (Exception $ex) {
+        //    echo $ex->getMessage();
+        //}
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,41 +58,50 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-3 col-sm-2"></div>
                 <div class="col-xl-4 col-lg-6 col-sm-8" id="register-form-div">
-                    <form action="studentLogin.html">
+                    <form action="studentRegister.php" id="studentRegisterForm" method="post">
                         <div class="mb-8" id="title-div">
                             <p class="h2" id="register-title">Create your account</p>
                         </div>
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
                                 <label for="first-name" class="form-label" id="validFirstNameMsg">First Name</label>
-                                <input type="text" class="form-control" id="first-name">
+                                <input type="text" class="form-control" id="first-name" name="first-name">
                                 
                             </div>
                             <div class="mb-2 ind-div">
                                 <label for="last-name" class="form-label" id="validLastNameMsg">Last Name</label>
-                                <input type="text" class="form-control" id="last-name">
+                                <input type="text" class="form-control" id="last-name" name="last-name">
                             </div>
                           </div>
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
-                                <label for="student-id" class="form-label" id="validIdMsg">Student ID</label>
-                                <input type="number" class="form-control" id="student-id">
+                                <label for="teacher" class="form-label" id="teacherMsg">Teacher</label>
+                                <select class="form-select" id="teacherOption" name="teacherOption">
+                                    <?php 
+                                    $teachers = $pdo->query('SELECT id, firstName, lastName FROM teachers')->fetchAll(PDO::FETCH_CLASS, 'Teacher');
+
+                                    foreach ($teachers as $teacher) {
+                                        echo "<option value=\"" . $teacher->id . "\" selected=\"selected\">" . $teacher->firstName . " " . $teacher->lastName . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                                
                             </div>
                             <div class="mb-2 ind-div">
                                 <label for="email" class="form-label" id="validEmailMsg">Email</label>
-                                <input type="text" class="form-control" id="email">
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
-                          </div>
+                        </div>
                         <div class="mb-3 text-div">
                         </div>
                         <div class="mb-1 password-div">
                             <div class="mb-2 ind-div">
                                 <label for="password" class="form-label" id="validPasswordMsg">Password</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="mb-2 ind-div">
                                 <label for="confirmPassword" class="form-label" id="validConfirmMsg">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm-password">
+                                <input type="password" class="form-control" id="confirm-password" name="confirm-password">
                             </div>
                         </div>
                         <div class="mt-1">
