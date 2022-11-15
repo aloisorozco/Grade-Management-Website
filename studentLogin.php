@@ -1,3 +1,33 @@
+<?php 
+
+error_reporting(E_ERROR | E_PARSE);
+
+include "connectToDB.php";
+
+$error = "";
+
+class Student {};
+
+if (isset($_POST['email'])) {
+
+    $q = "SELECT id, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+        
+    $student = $pdo->query($q)->fetchObject('Student');
+
+    if ($student->email == null) {
+        $error = "Invalid credentials";
+        
+    }
+    else {
+        setcookie("id", $student->id, time() + (86400 * 30), "/");
+        setcookie("isStudent", true, time() + (86400 * 30), "/");
+        header("Location: studentMainPage.php");
+        exit();
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,22 +52,24 @@
                         <h3 id="login-header">Student Login</h3>
                     </div>
                     <div id="login-div">
-                        <form action="studentMainPage.html">
+                        <form action="studentLogin.php" id="studentLoginForm" method="post">
                             <div class="mb-3">
                               <label for="email" class="form-label">Email</label>
-                              <input type="text" class="form-control" id="email">
+                              <input type="text" class="form-control" id="email" name="email">
                             </div>
                             <div class="mb-3">
                               <label for="password" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="password">
+                              <input type="password" class="form-control" id="password" name="password">
                             </div>
-                            <p id="validEmailPasswordMsg"></p>
+                            <p id="validEmailPasswordMsg">
+                                <?php echo $error ?>
+                            </p>
                             <button type="button" class="btn btn-primary mb-3" onclick="loginButtonClicked()">Login</button>
                           </form>
                     </div>
                     <div id="link-div">
-                        <a href="studentRegister.html">Register</a>
-                        <a href="teacherLogin.html">Not a student? Click here to access teacher login</a>
+                        <a href="studentRegister.php">Register</a>
+                        <a href="teacherLogin.php">Not a student? Click here to access teacher login</a>
                     </div>
                 </div>
                 <div class="col-md-0 col-sm-2"></div>

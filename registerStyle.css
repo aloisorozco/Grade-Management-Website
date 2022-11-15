@@ -15,7 +15,11 @@ body {
     background-size: cover;
    }
 
-input[type="text"], input[type="password"], input[type="number"] {
+input[type="text"], input[type="password"] {
+    width: 80%;
+}
+
+select, option {
     width: 80%;
 }
 
@@ -30,6 +34,11 @@ input[type="number"], textarea {
 input[type="password"], textarea {
     background-color : var(--offwhite); 
 }
+
+select {
+    background-color : var(--offwhite); 
+}
+
 
 .text-div, .password-div{
     display: flex;

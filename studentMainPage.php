@@ -1,3 +1,9 @@
+<?php 
+
+include "verifyUser.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

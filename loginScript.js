@@ -5,10 +5,12 @@ function loginButtonClicked(){
     if (validateEmail(email) && validatePassword(password)) {
         document.getElementById("validEmailPasswordMsg").innerHTML = "";
         if (window.location.pathname.includes("student")) {
-            window.location = "studentMainPage.html";
+            //window.location = "studentMainPage.html";
+            document.getElementById("studentLoginForm").submit();
         }
         else {
-            window.location = "teacherMainPage.html";
+            //window.location = "teacherMainPage.html";
+            document.getElementById("teacherLoginForm").submit();
         }
         
     }
