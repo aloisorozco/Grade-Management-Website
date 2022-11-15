@@ -49,7 +49,7 @@ else {
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-8" id="login-main-div">
                 <div id="title-div"><h1 id="title-header">Grade Management System</h1></div>
                 <div class="login-header-div">
-                    <h3 id="login-header">Student Login</h3>
+                    <h3 id="login-header">Teacher Login</h3>
                 </div>
                 <div id="login-div">
                     <form action="teacherLogin.php" id="teacherLoginForm" method="post">
