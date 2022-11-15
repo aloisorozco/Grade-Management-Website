@@ -2,6 +2,8 @@
 
 include "verifyUser.php";
 
+include "connectToDB.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +14,7 @@ include "verifyUser.php";
     <title>Document</title>
     <link rel="stylesheet" href="teacherMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="footerTeacherMainPage.css">
     <script src="studentManagementHome.js"></script>
 </head>
 <body>

@@ -1,4 +1,6 @@
 html{
+    min-height: 650px;
+    min-width: 360px;
     height: 100%;
     width: 100%;
 }
@@ -162,7 +164,7 @@ h4{
         display: flex;
         flex-direction: column;
         background-color: #C8C8C8;
-        height: 88%;
+        height: 85%;
         margin-top: 3%;
         width: 55%;
     }
@@ -180,7 +182,7 @@ h4{
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
-        height: 40%;
+        height: 29%;
         overflow: scroll;
         overflow-x: hidden;
     }
@@ -191,8 +193,8 @@ h4{
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
-        height: 26%;
-        margin-bottom: 5%;
+        height: 32%;
+        margin-bottom: 2%;
     }
     
     #titles{
@@ -312,7 +314,7 @@ h4{
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
-        height: 40%;
+        height: 33%;
         overflow: scroll;
         overflow-x: hidden;
     }
@@ -335,8 +337,8 @@ h4{
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
-        height: 26%;
-        margin-bottom: 5%;
+        height: 30%;
+        margin-bottom: 2%;
     }
 
     #middleSectionAssignment{
