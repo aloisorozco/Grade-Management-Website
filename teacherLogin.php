@@ -69,7 +69,7 @@ else {
                 </div>
                 <div id="link-div">
                     <a href="teacherRegister.php">Register</a>
-                    <a href="studentLogin.php">Not a student? Click here to access teacher login</a>
+                    <a href="studentLogin.php">Not a teacher? Click here to access student login</a>
                 </div>
             </div>
             <div class="col-md-0 col-sm-2"></div>
