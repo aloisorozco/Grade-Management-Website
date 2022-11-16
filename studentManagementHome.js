@@ -63,7 +63,7 @@ function addQuestion(){
         containerLeft.appendChild(document.createElement('br'));
         let index = document.createElement('span');
         index.textContent=indexq;
-        index.style.height='21.33px';
+        index.style.height='21.74px';
         index.style.display ='block';
         containerLeft.appendChild(index);
         container.appendChild(document.createElement('br'));

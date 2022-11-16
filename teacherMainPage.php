@@ -130,41 +130,45 @@ include "connectToDB.php";
             </div>
 
             <div id="tableContainerAssignment">
-                
-                <div id="leftTable">
-                    <br>
-                    <span>Assignment Name</span>
-                    <br>
-                    <br>
-                    <span>Weight</span>
-                    <br>
-                    <br>
-                    <span>Number of Questions</span>
-                    <br>
 
+                <br>
+                <div class="formSection">
+                    <label>Assignment Name</label>
+                    <input type="text">
                 </div>
-                <div id="lightTable">
-                    
-                        <br>
-                        <label>
-                            <input type="text">
-                        </label>
-                        <br>
-                        <br>
-                        <label>
-                            <input type="number" maxlength="100">
-                        </label>
-                        <br>
-                        <br>
-                        <label>
-                            <input type="number" oninput="addQuestion()" id="numberQuestionInput">
-                        </label>
-                        <br>
-                        
-                    
-                </div>
-                
 
+                <br>
+
+                <br>
+                <div class="formSection">
+                    <label>Weight</label>
+                    <input type="number">
+                </div>
+
+                <br>
+
+                <br>
+                <div class="formSection">
+                    <label>Number of Questions</label>
+                    <input type="number" oninput="addQuestion()" id="numberQuestionInput">
+                </div>
+
+                <br>
+
+                <br>
+                <div class="formSection">
+                <label>Due date</label>
+                <input type="date" id="date">
+                </div>
+
+                <br>
+
+                <div class="formSection">
+                    <label>Assignment Description</label>
+                    <textarea id="assignmentDescription" name="assignmentDescription" rows="4" cols="37"></textarea>
+                </div>
+
+                
             </div>
             <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
             <h3 id="assignmentName">Questions</h3>

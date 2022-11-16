@@ -19,10 +19,26 @@ h4{
     text-align: center;
 }
 
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+}
+
+.formSection{
+    display: flex;
+    justify-content: space-around;
+}
+
+.formSection input, textarea{
+    width: 200.65px;
+}
+
 #leftTableAssignment{
     width: 50%;
     text-align: center;
 }
+
 #lightTableAssignment{
     width: 50%;
     text-align: center;
@@ -188,13 +204,16 @@ h4{
     }
     
     #tableContainerAssignment{
-        display: flex;
+        flex-direction: column;
+        text-align: center;
         justify-content: space-around;
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
         height: 32%;
         margin-bottom: 2%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     
     #titles{
@@ -319,6 +338,10 @@ h4{
         overflow-x: hidden;
     }
 
+    .formSection input, textarea{
+        width: 40%;
+    }
+
     #spaceHolder{
         height: 100%;
     }
@@ -332,13 +355,16 @@ h4{
     }
 
     #tableContainerAssignment{
-        display: flex;
+        flex-direction: column;
+        text-align: center;
         justify-content: space-around;
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
         height: 30%;
         margin-bottom: 2%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     #middleSectionAssignment{
@@ -363,6 +389,7 @@ h4{
     
     #leftTable{
         height: 100%;
+        width: 20%;
     }
     
     #middleSection img{
