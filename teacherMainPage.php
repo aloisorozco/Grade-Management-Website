@@ -15,7 +15,6 @@ include "connectToDB.php";
     <link rel="stylesheet" href="teacherMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footerTeacherMainPage.css">
-    <script src="studentManagementHome.js"></script>
 </head>
 <body>
     <header>
@@ -142,7 +141,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                     <label>Weight</label>
-                    <input type="number">
+                    <input type="number" max=100>
                 </div>
 
                 <br>
@@ -150,7 +149,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                     <label>Number of Questions</label>
-                    <input type="number" oninput="addQuestion()" id="numberQuestionInput">
+                    <input type="number" oninput="addQuestion()" max=100 id="numberQuestionInput">
                 </div>
 
                 <br>
@@ -158,7 +157,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                 <label>Due date</label>
-                <input type="date" id="date">
+                <input type="datetime-local" id="date" min="2000-01-02">
                 </div>
 
                 <br>
@@ -239,6 +238,6 @@ include "connectToDB.php";
 
 
 
-
+    <script src="studentManagementHome.js"></script>
 </body>
 </html>
