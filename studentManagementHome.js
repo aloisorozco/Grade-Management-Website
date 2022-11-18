@@ -73,6 +73,17 @@ function addQuestion(){
     }
 }
 
+var d = new Date().toDateString();
+var d1 = new Date();
+s = d.split(" ");
+console.log(s[3]);
+var newString = s[3] +"-" + new Date().toISOString().split("-")[1] + "-" + s[2] + "T" + d1.getHours() + ":" + d1.getMinutes();
+
+document.getElementById('date').min = newString;
+
+
+console.log(newString);
+
 /*
 function ajaxPost() {
     var form = document.getElementById("questionsForm");
