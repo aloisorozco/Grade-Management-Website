@@ -101,7 +101,17 @@ include "verifyUser.php";
                 </div>
 
             </div>
-            <img src="calendar.png" alt="Calendar picture">
+
+            <div id="titles">
+                <h4>Calendar</h4>
+            </div>
+
+            <div id="tableContainer">
+     
+                <button id="calendarButton">Access Calendar</button>
+
+            </div>
+
         </div>
 
         <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->

@@ -17,6 +17,11 @@ h4{
     text-align: center;
 }
 
+#calendarButton{
+    height: 20%;
+    margin: auto;
+}
+
 #leftTableAssignment{
     width: 50%;
     text-align: center;
@@ -180,7 +185,7 @@ h4{
         background-color: #E2EAFC;
         margin-left: 5%;
         margin-right: 5%;
-        height: 30%;
+        height: 40%;
         overflow-x: hidden;
     }
     
