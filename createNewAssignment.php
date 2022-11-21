@@ -9,7 +9,7 @@ include "connectToDB.php";
 
 $sql = "INSERT INTO assignment(description,dueDate,name,number_of_questions,teacherId,weight) VALUES (?,?,?,?,?,?)";
 $stmt= $pdo->prepare($sql);
-$stmt->execute([$description, $dueDate,$name,$nbQuestions,1,$weight]);
+$stmt->execute([$description, $dueDate,$name,$nbQuestions,$_COOKIE["id"],$weight]);
 
 //$sql = "INSERT INTO questions VALUES (name,weight)";
 //For each questions
@@ -22,6 +22,6 @@ foreach ($_POST as $key => $value) {
         echo "$key = $value<br>";
     }
 }
-
+header("Location: teacherMainPage.php");
 
 ?>

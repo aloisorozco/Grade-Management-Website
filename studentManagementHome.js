@@ -2,6 +2,9 @@ var mediaLarge = window.matchMedia("(min-width: 1100px)");
 mediaLarge.addEventListener("change",mediaLargeHandler);
 var indexq = 1; 
 
+var teacherName = document.getElementById("teacherName");
+teacherName.textContent = getCookie('name');
+
 function activateMenu(){
     const toggleMenu = document.querySelector('.menu');
     toggleMenu.classList.toggle('active');
@@ -88,13 +91,9 @@ if(minutes.toString().length == 1){
 
 
 s = d.split(" ");
-console.log(s[3]);
 var newString = s[3] +"-" + new Date().toISOString().split("-")[1] + "-" + s[2] + "T" + hours + ":" + minutes + ":00";
 
 document.getElementById('date').min = newString;
-
-
-console.log(newString);
 
 /*
 function ajaxPost() {
@@ -108,3 +107,17 @@ function ajaxPost() {
     return false;
   }
   */
+
+console.log(document.cookie);
+
+//From https://www.tabnine.com/academy/javascript/how-to-get-cookies/
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+      if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+  }

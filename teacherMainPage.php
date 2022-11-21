@@ -3,7 +3,6 @@
 include "verifyUser.php";
 
 include "connectToDB.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -237,5 +236,6 @@ include "connectToDB.php";
 
 
     <script src="studentManagementHome.js"></script>
+    
 </body>
 </html>

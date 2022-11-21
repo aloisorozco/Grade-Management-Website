@@ -10,7 +10,7 @@ class Teacher {};
 
 if (isset($_POST['email'])) {
 
-$q = "SELECT id, email, password FROM teachers WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+$q = "SELECT id, email, firstName,lastName, password FROM teachers WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
     
 $teacher = $pdo->query($q)->fetchObject('Teacher');
 
@@ -20,6 +20,7 @@ if ($teacher->email == null) {
 }
 else {
     setcookie("id", $teacher->id, time() + (86400 * 30), "/");
+    setcookie("name", $teacher->firstName . " " . $teacher->lastName, time() + (86400 * 30), "/");
     setcookie("isStudent", false, time() + (86400 * 30), "/");
     header("Location: teacherMainPage.php");
     exit();
