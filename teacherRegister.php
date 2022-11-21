@@ -95,6 +95,7 @@ if (isset($_POST['email'])) {
                         </div>
                         <div class="mt-1">
                             <p id="passwordStructMsg">Password must be 8-20 chars long<br>& have at least 1 number</p>
+                            <p id="emailExistsMsg" style="color: red;"><?php echo $error; ?></p>
                             <button type="button" class="btn btn-primary" onclick="registerButtonClicked()">Register</button>
                         </div>
                     </form>
