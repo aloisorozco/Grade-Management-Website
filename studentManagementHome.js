@@ -59,6 +59,7 @@ function addQuestion(){
 
         let input = document.createElement('input');
         input.size=4;
+        input.name = "q" + i;
         input.style.marginLeft='4em';
         containerLeft.appendChild(document.createElement('br'));
         let index = document.createElement('span');
@@ -75,9 +76,20 @@ function addQuestion(){
 
 var d = new Date().toDateString();
 var d1 = new Date();
+var hours = d1.getHours();
+console.log(hours.toString());
+if(hours.toString().length == 1){
+    hours = "0" + hours;
+}
+var minutes = d1.getMinutes();
+if(minutes.toString().length == 1){
+    minutes = "0" + minutes;
+}
+
+
 s = d.split(" ");
 console.log(s[3]);
-var newString = s[3] +"-" + new Date().toISOString().split("-")[1] + "-" + s[2] + "T" + d1.getHours() + ":" + d1.getMinutes();
+var newString = s[3] +"-" + new Date().toISOString().split("-")[1] + "-" + s[2] + "T" + hours + ":" + minutes + ":00";
 
 document.getElementById('date').min = newString;
 

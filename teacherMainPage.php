@@ -118,10 +118,8 @@ include "connectToDB.php";
 
         <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
         <div id="middleSectionAssignment" style="display:none;">
-            <form id="questionsForm">
+            <form id="questionsForm" action="createNewAssignment.php" method="post">
 
-
-                
             <h3 id="assignmentName">Assignment builder</h3>
 
             <div id="titles">
@@ -133,7 +131,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                     <label>Assignment Name</label>
-                    <input type="text">
+                    <input type="text" name="assignmentName">
                 </div>
 
                 <br>
@@ -141,7 +139,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                     <label>Weight</label>
-                    <input type="number" max=100>
+                    <input type="number" max=100 name="assignmentWeight">
                 </div>
 
                 <br>
@@ -149,7 +147,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                     <label>Number of Questions</label>
-                    <input type="number" oninput="addQuestion()" max=100 id="numberQuestionInput">
+                    <input type="number" oninput="addQuestion()" max=100 id="numberQuestionInput" name="assignmentNumberQuestions">
                 </div>
 
                 <br>
@@ -157,7 +155,7 @@ include "connectToDB.php";
                 <br>
                 <div class="formSection">
                 <label>Due date</label>
-                <input type="datetime-local" id="date" min="2000-01-02">
+                <input type="datetime-local" id="date" min="2000-01-02" name="assignmentDueDate">
                 </div>
 
                 <br>
@@ -191,7 +189,7 @@ include "connectToDB.php";
 
                 <h4 id="submitButton">
                     <span>
-                        <input type="submit" name="submit"  value="Submit">
+                        <input type="submit" name="submit" value="Submit">
                     </span>
                     <button onclick="location.reload()">Cancel</button>
                 </h4>
