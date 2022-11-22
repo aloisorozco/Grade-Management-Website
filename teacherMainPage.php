@@ -3,6 +3,7 @@
 include "verifyUser.php";
 
 include "connectToDB.php";
+include "gradeFinder.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +15,23 @@ include "connectToDB.php";
     <link rel="stylesheet" href="teacherMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footerTeacherMainPage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+
+    function displayAssignment(name){
+        document.cookie = "assignment=" + name;
+        console.log(document.cookie);
+        document.getElementById('assignmentName').textContent = String(name);
+        //document.getElementById("leftTable").innerHTML = '<?php echo addGrade()?>';
+        updateDiv();
+    }
+    function updateDiv()
+          { 
+                 $( "#leftTable" ).load(window.location.href + " #leftTable" );
+                 $( "#lightTable" ).load(window.location.href + " #lightTable" );
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -58,6 +76,10 @@ include "connectToDB.php";
         
         <nav id="sideNav">
             <h3>Navigation</h3>
+
+            <?php include "AddNavElement.php" ?>
+
+            <!--
             <form action="#" onclick="menuToggler()">
                 <button>Assignment 1</button>
             </form>
@@ -70,12 +92,14 @@ include "connectToDB.php";
             <form action="#" onclick="menuToggler()">
                 <button>Midterm</button>
             </form>
+            -->
             <form action="chartPageTeacher.html" onclick="menuToggler()">
                 <button>Chart For Teacher</button>
             </form>
             <form onclick="menuToggler(); changeAssignmentName()">
                 <button type="button">Add assignment</button>
             </form>
+
             
         </nav>
 
@@ -91,28 +115,92 @@ include "connectToDB.php";
             <div id="tableContainer">
      
                 <div id="leftTable">
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
-                    <p>Student Name: grade%</p>
+
+                <?php
+                        include "connectToDB.php";
+                        // Get all students with a grade for this assignment
+                        $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
+                        $stmt= $pdo->prepare($sql);
+                        $stmt->execute([$_COOKIE["assignment"]]);
+                        $set = $stmt->fetchAll();
+
+                        //Get the name of each of those students and echo it
+
+                        foreach($set as $row){
+                            $sql1 = "SELECT firstName, lastName FROM students WHERE id=?";
+                            $stmt = $pdo->prepare($sql1);
+                            $stmt->execute([$row['studentId']]);
+                            $name = $stmt->fetch();
+                            echo "<p>" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score']. "%</p>";
+                        }
+                    ?>
+
 
                 </div>
                 <div id="lightTable">
+
+                <?php
+                        include "connectToDB.php";
+                        // Get all students with a grade for this assignment
+                        $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
+                        $stmt= $pdo->prepare($sql);
+                        $stmt->execute([$_COOKIE["assignment"]]);
+                        $scores = $stmt->fetchAll();
+                        //$scores[] = $rawScores['score'];
+                        $total = 0;
+                        $count = count($scores);
+
+                        $list = [];
+                        foreach($scores as $s){
+                            array_push($list, $s['score']);
+                        }
+
+                        if($count != 0){
+                            foreach($list as $l){
+                                $total = $total + $l;
+                            }
+    
+                            $average = $total/$count;
+                            echo "<p>Class mean: " . $average ."%</p>";
+    
+                            sort($list);
+    
+                            $half = (int)($count/2); 
+                            
+                            if($count % 2 !=0){
+                                $median = $list[$half];
+                            }
+
+                            else{
+                                $median = ($list[$half] + $list[$half-1])/2;
+                            }
+
+                            echo "<p>Class median: " . $median ."%</p>";
+                            
+    
+                            $variance = 0.0;
+    
+                            foreach($list as $x){
+                                $variance += pow(($x - $average),2);
+                            }
+    
+                            $std = (float)sqrt($variance/$count);
+                            echo "<p>Standard deviation: " . $std ."%</p>";
+                        }
+                           
+                    ?>
+                    <!--
                     <p>Class mean: grade%</p>
                     <p>Class median: grade%</p>
                     <p>Standard deviation: grade%</p>
+                    -->
                 </div>
 
             </div>
             <img src="snd.png" alt="A gaussian distribution">
+            <h4 id="submitButton">
+                    <button onclick="location.reload()">Remove Assignment</button>
+                </h4>
         </div>
 
         <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
@@ -231,9 +319,6 @@ include "connectToDB.php";
             </div>
         </div>
     </footer>
-
-
-
 
     <script src="studentManagementHome.js"></script>
     
