@@ -85,20 +85,6 @@ include "gradeFinder.php";
 
             <?php include "AddNavElementStudent.php" ?>
 
-            <!--
-            <form action="#" onclick="menuToggler()">
-                <button>Assignment 1</button>
-            </form>
-            <form action="#" onclick="menuToggler()">
-                <button>Assignment 2</button>
-            </form>
-            <form action="#" onclick="menuToggler()">
-                <button>Assignment 3</button>
-            </form>
-            <form action="#" onclick="menuToggler()">
-                <button>Midterm</button>
-            </form>
-            -->
             <form action="studentAssessmentPage.html" onclick="menuToggler()">
                 <button>Dark Mode</button>
             </form>
