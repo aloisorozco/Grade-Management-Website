@@ -1,6 +1,8 @@
 <?php 
 
 include "verifyUser.php";
+include "connectToDB.php";
+include "gradeFinder.php";
 
 ?>
 
@@ -14,6 +16,24 @@ include "verifyUser.php";
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footer.css">
     <script src="studentManagementHome.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+
+    function displayAssignment(name){
+        document.cookie = "assignment=" + name;
+        console.log(document.cookie);
+        document.getElementById('assignmentName').textContent = String(name);
+        //document.getElementById("leftTable").innerHTML = '<?php echo addGrade()?>';
+        updateDiv();
+    }
+    function updateDiv()
+          { 
+                 $( "#leftTable" ).load(window.location.href + " #leftTable" );
+                 $( "#lightTable" ).load(window.location.href + " #lightTable" );
+        }
+    </script>
+
 </head>
 <body>
     <header>
@@ -58,6 +78,10 @@ include "verifyUser.php";
         
         <nav id="sideNav">
             <h3>Navigation</h3>
+
+            <?php include "AddNavElement.php" ?>
+
+            <!--
             <form action="#" onclick="menuToggler()">
                 <button>Assignment 1</button>
             </form>
@@ -70,9 +94,7 @@ include "verifyUser.php";
             <form action="#" onclick="menuToggler()">
                 <button>Midterm</button>
             </form>
-            <form action="chartPageStudent.html" onclick="menuToggler()">
-                <button>Chart for Student</button>
-            </form>
+            -->
             <form action="studentAssessmentPage.html" onclick="menuToggler()">
                 <button>Dark Mode</button>
             </form>
@@ -95,9 +117,61 @@ include "verifyUser.php";
 
                 </div>
                 <div id="lightTable">
+                    <!--
                     <p>Class mean: grade%</p>
                     <p>Class median: grade%</p>
                     <p>Standard deviation: grade%</p>
+                    -->
+                    <?php
+                        include "connectToDB.php";
+                        // Get all students with a grade for this assignment
+                        $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
+                        $stmt= $pdo->prepare($sql);
+                        $stmt->execute([$_COOKIE["assignment"]]);
+                        $scores = $stmt->fetchAll();
+                        //$scores[] = $rawScores['score'];
+                        $total = 0;
+                        $count = count($scores);
+
+                        $list = [];
+                        foreach($scores as $s){
+                            array_push($list, $s['score']);
+                        }
+
+                        if($count != 0){
+                            foreach($list as $l){
+                                $total = $total + $l;
+                            }
+    
+                            $average = $total/$count;
+                            echo "<p>Class mean: " . $average ."%</p>";
+    
+                            sort($list);
+    
+                            $half = (int)($count/2); 
+                            
+                            if($count % 2 !=0){
+                                $median = $list[$half];
+                            }
+
+                            else{
+                                $median = ($list[$half] + $list[$half-1])/2;
+                            }
+
+                            echo "<p>Class median: " . $median ."%</p>";
+                            
+    
+                            $variance = 0.0;
+    
+                            foreach($list as $x){
+                                $variance += pow(($x - $average),2);
+                            }
+    
+                            $std = (float)sqrt($variance/$count);
+                            echo "<p>Standard deviation: " . $std ."%</p>";
+                        }
+                           
+                    ?>
                 </div>
 
             </div>

@@ -1,9 +1,11 @@
 <?php 
 include "connectToDB.php";
 
+//$sql = "Select teacherId FROM students WHERE id = ?";
+
 $sql = "SELECT name FROM assignment WHERE teacherId = ?";
 $stmt= $pdo->prepare($sql);
-$stmt->execute([$_COOKIE["id"]]);
+$stmt->execute([$_COOKIE["id"]]);//$teacherId
 
 $name = $stmt->fetchAll();
 
