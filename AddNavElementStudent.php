@@ -9,7 +9,6 @@ $name = $stmt->fetchAll();
 
 
 foreach ($name as $row) {
-    echo "<button onclick=\"menuToggler(); displayAssignment('". $row['name'] ."')\" type = 'button'>" . $row['name'] . "</button>";
-    
+   echo "<button onclick=\"menuToggler(); displayAssignment('". $row['name'] ."')\" type = 'button'>" . $row['name'] . "</button>";
 }
 ?>
