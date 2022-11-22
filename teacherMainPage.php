@@ -198,7 +198,7 @@ include "gradeFinder.php";
             </div>
             <img src="snd.png" alt="A gaussian distribution">
             <h4 id="submitButton">
-                    <button onclick="location.reload()">Remove Assignment</button>
+                    <button onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
                 </h4>
         </div>
 
