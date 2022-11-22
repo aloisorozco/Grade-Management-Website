@@ -1,7 +1,6 @@
 <?php 
 
 include "verifyUser.php";
-
 include "connectToDB.php";
 include "gradeFinder.php";
 ?>
