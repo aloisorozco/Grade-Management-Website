@@ -10,7 +10,7 @@ $error = "";
 
 class Assignment {};
 
-if (isset($_POST['assignmentName']) and (strcmp($name,"") == 0)) {
+if (isset($_POST['assignmentName']) and (strcmp($name,"") != 0)) {
 
     include "connectToDB.php";
 
@@ -49,6 +49,8 @@ if (isset($_POST['assignmentName']) and (strcmp($name,"") == 0)) {
             }
         }   
     }
+
+    
     header("Location: teacherMainPage.php");
 }
 ?>
