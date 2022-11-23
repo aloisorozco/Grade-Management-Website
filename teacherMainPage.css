@@ -87,6 +87,51 @@ label {
     margin-top: 0.5em;
 }
 
+#tableContainer{
+    display: flex;
+    justify-content: space-around;
+    background-color: #E2EAFC;
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 33%;
+}
+
+#statisticTable{
+    display:flex; 
+    justify-content:space-around;
+}
+
+#statisticTableContainer{
+    background-color: #E2EAFC;
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#titles{
+    display: flex;
+    justify-content: space-around;
+    background-color:#C1D3FE ;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#titleStatistics{
+    display: none;
+    justify-content: space-around;
+    background-color:#C1D3FE ;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+
+#titles h4, #titleStatistics h4{
+    margin: 0px;
+}
+
 @media screen and (min-width: 1100px) {
     
     #mainNav{
@@ -192,17 +237,6 @@ label {
         color: white;
     }
     
-    #tableContainer{
-        display: flex;
-        justify-content: space-around;
-        background-color: #E2EAFC;
-        margin-left: 5%;
-        margin-right: 5%;
-        height: 29%;
-        overflow: scroll;
-        overflow-x: hidden;
-    }
-    
     #tableContainerAssignment{
         flex-direction: column;
         text-align: center;
@@ -214,18 +248,6 @@ label {
         margin-bottom: 2%;
         overflow-y: scroll;
         overflow-x: hidden;
-    }
-    
-    #titles{
-        display: flex;
-        justify-content: space-around;
-        background-color:#C1D3FE ;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-    
-    #titles h4{
-        margin: 0px;
     }
     
     #leftTable{
@@ -327,17 +349,6 @@ label {
         color: white;
     }
     
-    #tableContainer{
-        display: flex;
-        justify-content: space-around;
-        background-color: #E2EAFC;
-        margin-left: 5%;
-        margin-right: 5%;
-        height: 33%;
-        overflow: scroll;
-        overflow-x: hidden;
-    }
-
     .formSection input, textarea{
         width: 40%;
     }
@@ -346,14 +357,6 @@ label {
         height: 100%;
     }
     
-    #titles{
-        display: flex;
-        justify-content: space-around;
-        background-color:#C1D3FE ;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
     #tableContainerAssignment{
         flex-direction: column;
         text-align: center;
@@ -382,14 +385,9 @@ label {
         text-align: center;
         color: white;
     }
-
-    #titles h4{
-        margin: 0px;
-    }
     
     #leftTable{
         height: 100%;
-        width: 20%;
     }
     
     #middleSection img{
