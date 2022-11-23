@@ -3,6 +3,7 @@
 include "verifyUser.php";
 include "connectToDB.php";
 include "gradeFinder.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@ include "gradeFinder.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Teacher Main Page</title>
     <link rel="stylesheet" href="teacherMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footerTeacherMainPage.css">
@@ -273,9 +274,22 @@ include "gradeFinder.php";
 
                 </div>
 
+                <p id="weight-error-msg">
+                    
+                    <?php 
+                    /*if (isset($_COOKIE['assignmentWeightError'])) {
+                        echo $_COOKIE['assignmentWeightError'];
+                        unset($_COOKIE['assignmentWeightError']); 
+                        setcookie('assignmentWeightError', null, -1, '/'); 
+                    }*/
+                    
+                    ?>
+                    </p>
+
                 <h4 id="submitButton">
                     <span>
-                        <input type="submit" name="submit" value="Submit">
+                        <!------<input type="submit" name="submit" value="Submit">------>
+                        <button type="button" onclick="addAssignment()">Submit</button>
                     </span>
                     <button onclick="location.reload()">Cancel</button>
                 </h4>

@@ -24,8 +24,8 @@ function registerButtonClicked() {
             document.getElementById("studentRegisterForm").submit();
         }
         else {
-            if (validateConfirm(email,document.getElementById("confirm-email").value)) {
-                document.getElementById("confirm-email").style.border="none";
+            if (validateClassName(document.getElementById("class").value)) {
+                document.getElementById("class").style.border="none";
                 document.getElementById("teacherRegisterForm").submit();
                 //window.location = "teacherLogin.html";
             }
@@ -61,9 +61,9 @@ function registerButtonClicked() {
             document.getElementById("email").style.border="none";
         }
         if (window.location.pathname.includes("teacher")) {
-            if (!validateConfirm(email, document.getElementById("confirm-email").value)) {
-                document.getElementById("validConfirmEmailMsg").style.color=red;
-                document.getElementById("confirm-email").style.border="solid 1px "+red;
+            if (!validateClassName(document.getElementById("class").value)) {
+                document.getElementById("validClassMsg").style.color=red;
+                document.getElementById("class").style.border="solid 1px "+red;
             }
             else {
                 document.getElementById("validConfirmEmailMsg").style.color="black";
@@ -93,6 +93,11 @@ function registerButtonClicked() {
 
 function validateName(name) {
     var regex = /^[a-zA-Z ]{2,30}$/
+    return regex.test(name);
+}
+
+function validateClassName(name) {
+    var regex = /[^A-Za-z0-9]+/
     return regex.test(name);
 }
 

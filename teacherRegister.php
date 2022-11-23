@@ -10,13 +10,13 @@ class Teacher {};
 
 if (isset($_POST['email'])) {
 
-    $q1 = "SELECT id, email, password FROM teachers WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
-    $q2 = "INSERT INTO teachers (email, password, firstName, lastName) VALUES (?,?,?,?)";
+    $q1 = "SELECT email FROM teachers WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+    $q2 = "INSERT INTO teachers (email, password, firstName, lastName, className) VALUES (?,?,?,?,?)";
     
 
     $teacher = $pdo->query($q1)->fetchObject('Teacher');
 
-    if ($teacher->email == $_POST['email']) {
+    if (!is_null($teacher) and $teacher->email == $_POST['email']) {
         $error = "Email already exists";
         
     }
@@ -25,7 +25,7 @@ if (isset($_POST['email'])) {
     else {
 
         //try {
-            $pdo->prepare($q2)->execute([$_POST['email'], $_POST['password'], $_POST['first-name'],$_POST['last-name']]);
+            $pdo->prepare($q2)->execute([$_POST['email'], $_POST['password'], $_POST['first-name'],$_POST['last-name'], $_POST['class']]);
 
             header("Location: teacherLogin.php");
             exit();
@@ -73,12 +73,12 @@ if (isset($_POST['email'])) {
                           </div>
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
-                                <label for="email" class="form-label" id="validEmailMsg">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <label for="class" class="form-label" id="validClassMsg">Class</label>
+                                <input type="text" class="form-control" id="class" name="class">
                             </div>
                             <div class="mb-2 ind-div">
-                                <label for="confirm-email" class="form-label" id="validConfirmEmailMsg">Confirm Email</label>
-                                <input type="text" class="form-control" id="confirm-email">
+                                <label for="email" class="form-label" id="validEmailMsg">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
                           </div>
                         <div class="mb-3 text-div">
