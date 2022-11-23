@@ -34,6 +34,7 @@ function menuToggler(){
 function changeAssignmentName(){
     document.getElementById('middleSectionAssignment').style.display = 'block';
     document.getElementById('middleSection').style.display = 'none';
+     document.getElementById('titles').style.display = 'flex';
     //document.getElementById('header').style.backgroundColor='red';
 }
 
