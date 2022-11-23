@@ -5,13 +5,14 @@ $nbQuestions = $_POST["assignmentNumberQuestions"];
 $dueDate = $_POST["assignmentDueDate"];
 $description = $_POST["assignmentDescription"];
 
-include "connectToDB.php";
 
 $error = "";
 
 class Assignment {};
 
-if (isset($_POST['assignmentName'])) {
+if (isset($_POST['assignmentName']) and (strcmp($name,"") == 0)) {
+
+    include "connectToDB.php";
 
     $q = "SELECT weight FROM assignment WHERE teacherId='{$_COOKIE['id']}'";
             
@@ -30,6 +31,8 @@ if (isset($_POST['assignmentName'])) {
         echo  $error ;
     }
     else {
+        
+        
         $sql = "INSERT INTO assignment(description,dueDate,name,number_of_questions,teacherId,weight) VALUES (?,?,?,?,?,?)";
         $stmt= $pdo->prepare($sql);
         $stmt->execute([$description, $dueDate,$name,$nbQuestions,$_COOKIE["id"],$weight]);
@@ -48,5 +51,4 @@ if (isset($_POST['assignmentName'])) {
     }
     header("Location: teacherMainPage.php");
 }
-
 ?>
