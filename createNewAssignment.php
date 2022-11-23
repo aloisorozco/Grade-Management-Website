@@ -27,7 +27,7 @@ if (isset($_POST['assignmentName']) and (strcmp($name,"") != 0)) {
 
     if ($totalWeight > 100) {
         $error = "Total weight of assignments must be under 100";
-        setcookie("assignmentWeightError", $error, time() + (86400 * 30), "/");
+        setcookie("assignmentWeightError", $error, time() + 1, "/");
         echo  $error ;
     }
     else {
