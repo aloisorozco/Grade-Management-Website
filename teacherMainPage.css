@@ -3,6 +3,7 @@ html{
     min-width: 360px;
     height: 100%;
     width: 100%;
+    overflow-y: hidden;
 }
 body{
     height: 100%;
@@ -201,7 +202,7 @@ label {
     }
     
     #content{
-        height: 78%;
+        height: 80%;
         display: flex;
         justify-content: space-around;
     }
@@ -214,7 +215,7 @@ label {
         margin-top: 1px;
         background-color: #DEE2E6;
         width: 20vw;
-        height: 78%;
+        height: 80%;
         max-width: 200px;
         position:absolute;
         left: 0px;
