@@ -19,6 +19,8 @@ include "gradeFinder.php";
         document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
 
         function displayAssignment(name){
+            document.getElementById('middleSectionAssignment').style.display = "none";
+            document.getElementById('middleSection').style.display = "flex";
             document.cookie = "assignment=" + name;
             document.getElementsByClassName("removeMe")[0].style.display = "none";
             document.getElementById('tableContainer').style.height = "50%";
