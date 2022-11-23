@@ -121,7 +121,7 @@ function getCookie(cName) {
     cArr.forEach(val => {
       if (val.indexOf(name) === 0) res = val.substring(name.length);
     })
-    return res
+    return res;
   }
 
 function addAssignment() {

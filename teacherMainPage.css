@@ -40,6 +40,15 @@ label {
     width: 200.65px;
 }
 
+#weight-error-msg{
+    margin-left: 5%;
+    margin-bottom: 0%;
+    background-color: beige;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 5%;
+}
+
 #leftTableAssignment{
     width: 50%;
     text-align: center;
@@ -92,6 +101,10 @@ label {
 #submitButton{
     display: none;
     margin-top: 0.5em;
+}
+
+#submitButton button, #submitButtonAssignment button{
+    width: 45%;
 }
 
 #submitButtonAssignment{
