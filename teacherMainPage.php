@@ -110,124 +110,126 @@ include "gradeFinder.php";
         </nav>
 
         <!---------------------------------------------------------- Default ---------------------------------------------------------->
-        <div id="middleSection">
-            <h3 id="assignmentName">Selected Assignment</h3>
 
-            <div id="titles">
-                <h4>Student ID & Grades</h4>
-            </div>
+            <form id="middleSection" action="updateGrades.php" method="POST">
 
-            <div id="tableContainer">
-     
-                <div id="leftTable">
+                <h3 id="assignmentName">Selected Assignment</h3>
 
-                <?php
-                        include "connectToDB.php";
-                        // Get all students of this course
-                        $sql = "SELECT id FROM students WHERE teacherId = ?";
-                        $stmt= $pdo->prepare($sql);
-                        $stmt->execute([$_COOKIE["id"]]);
-                        $students = $stmt->fetchAll();
-                        // Get all students with a grade for this assignment
-
-
-                        //Get the name of each of those students and echo it
-
-                        foreach($students as $row){
-
-                            $sql = "SELECT score FROM grade WHERE assignmentName = ? AND studentId = ?";
-                            $stmt= $pdo->prepare($sql);
-                            $stmt->execute([$_COOKIE["assignment"],$row['id']]);
-                            $set = $stmt->fetch();
-                            
-                            echo "<div class='formSection' style='margin-top:6%;'> <label>".$row['id']."</label> <input type='number' style='width:auto; text-align:center;' max = '100' min = '0' placeholder = '".$set['score']."' name='grade.".$row['id']."'> </div>";
-                            
-                            /*
-                            $sql1 = "SELECT firstName, lastName FROM students WHERE id=?";
-                            $stmt = $pdo->prepare($sql1);
-                            $stmt->execute([$row['studentId']]);
-                            $name = $stmt->fetch();
-                            echo "<p>" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score']. "%</p>";*/
-                        }
-                    ?>
-
-
+                <div id="titles">
+                    <h4>Student ID & Grades</h4>
                 </div>
 
-            </div>
-            
-            <div id="titleStatistics">
-                <h4>Statistics</h4>
-            </div>
-            <div id = "updateMe">
-                <div id = "statisticTableContainer">
-                    <div id="statisticTable">
+                <div id="tableContainer">
+        
+                    <div id="leftTable">
 
-                        <?php
+                    <?php
                             include "connectToDB.php";
-                            // Get all students with a grade for this assignment
-                            $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
+                            // Get all students of this course
+                            $sql = "SELECT id FROM students WHERE teacherId = ?";
                             $stmt= $pdo->prepare($sql);
-                            $stmt->execute([$_COOKIE["assignment"]]);
-                            $scores = $stmt->fetchAll();
-                            //$scores[] = $rawScores['score'];
-                            $total = 0;
-                            $count = count($scores);
+                            $stmt->execute([$_COOKIE["id"]]);
+                            $students = $stmt->fetchAll();
+                            // Get all students with a grade for this assignment
 
-                            $list = [];
-                            foreach($scores as $s){
-                                array_push($list, $s['score']);
-                            }
 
-                            if($count != 0){
-                                foreach($list as $l){
-                                    $total = $total + $l;
-                                }
+                            //Get the name of each of those students and echo it
 
-                                $average = $total/$count;
-                                echo "<span style='display: inline-block;' >Mean: " . $average ."%</span>";
+                            foreach($students as $row){
 
-                                sort($list);
-
-                                $half = (int)($count/2); 
+                                $sql = "SELECT score FROM grade WHERE assignmentName = ? AND studentId = ?";
+                                $stmt= $pdo->prepare($sql);
+                                $stmt->execute([$_COOKIE["assignment"],$row['id']]);
+                                $set = $stmt->fetch();
                                 
-                                if($count % 2 !=0){
-                                    $median = $list[$half];
-                                }
-
-                                else{
-                                    $median = ($list[$half] + $list[$half-1])/2;
-                                }
-
-                                echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
+                                echo "<div class='formSection' style='margin-top:6%;'> <label>".$row['id']."</label> <input type='number' style='width:auto; text-align:center;' max = '100' min = '0' placeholder = '".$set['score']."' name='grade.".$row['id']."'> </div>";
                                 
-
-                                $variance = 0.0;
-
-                                foreach($list as $x){
-                                    $variance += pow(($x - $average),2);
-                                }
-
-                                $std = (float)sqrt($variance/$count);
-                                echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                /*
+                                $sql1 = "SELECT firstName, lastName FROM students WHERE id=?";
+                                $stmt = $pdo->prepare($sql1);
+                                $stmt->execute([$row['studentId']]);
+                                $name = $stmt->fetch();
+                                echo "<p>" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score']. "%</p>";*/
                             }
-                            
                         ?>
-                        <!--
-                        <p>Class mean: grade%</p>
-                        <p>Class median: grade%</p>
-                        <p>Standard deviation: grade%</p>
-                        -->
+
+
+                    </div>
+
+                </div>
+                
+                <div id="titleStatistics">
+                    <h4>Statistics</h4>
+                </div>
+                <div id = "updateMe">
+                    <div id = "statisticTableContainer">
+                        <div id="statisticTable">
+
+                            <?php
+                                include "connectToDB.php";
+                                // Get all students with a grade for this assignment
+                                $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
+                                $stmt= $pdo->prepare($sql);
+                                $stmt->execute([$_COOKIE["assignment"]]);
+                                $scores = $stmt->fetchAll();
+                                //$scores[] = $rawScores['score'];
+                                $total = 0;
+                                $count = count($scores);
+
+                                $list = [];
+                                foreach($scores as $s){
+                                    array_push($list, $s['score']);
+                                }
+
+                                if($count != 0){
+                                    foreach($list as $l){
+                                        $total = $total + $l;
+                                    }
+
+                                    $average = $total/$count;
+                                    echo "<span style='display: inline-block;' >Mean: " . $average ."%</span>";
+
+                                    sort($list);
+
+                                    $half = (int)($count/2); 
+                                    
+                                    if($count % 2 !=0){
+                                        $median = $list[$half];
+                                    }
+
+                                    else{
+                                        $median = ($list[$half] + $list[$half-1])/2;
+                                    }
+
+                                    echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
+                                    
+
+                                    $variance = 0.0;
+
+                                    foreach($list as $x){
+                                        $variance += pow(($x - $average),2);
+                                    }
+
+                                    $std = (float)sqrt($variance/$count);
+                                    echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                }
+                                
+                            ?>
+                            <!--
+                            <p>Class mean: grade%</p>
+                            <p>Class median: grade%</p>
+                            <p>Standard deviation: grade%</p>
+                            -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">
-            <h4 id="submitButton">
-                    <button onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
+                
+                <img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">
+                <h4 id="submitButton">
+                        <button onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
+                        <button type="submit">Update Grades</button>
                 </h4>
-        </div>
-
+            </form>
         <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
         <div id="middleSectionAssignment" style="display:none;">
             <form id="questionsForm" action="createNewAssignment.php" method="post">
