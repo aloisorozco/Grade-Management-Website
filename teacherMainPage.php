@@ -120,6 +120,18 @@ include "gradeFinder.php";
 
                 <h3 id="assignmentName">Average Grades</h3>
 
+                <p>
+                <?php 
+                if (isset($_COOKIE['assignmentWeightError'])) {
+                    echo $_COOKIE['assignmentWeightError'];
+                    //unset($_COOKIE['assignmentWeightError']); 
+                    //setcookie("assignmentWeightError", $error, time() + (86400 * 30), "/");
+                    //setcookie('assignmentWeightError', "", 1, "/"); 
+                }
+                
+                ?>
+                </p>
+
                 <div id="titles">
                     <h4>Student ID & Grades</h4>
                 </div>
@@ -307,24 +319,14 @@ include "gradeFinder.php";
 
                 </div>
 
-                <p id="weight-error-msg">
-                    
-                    <?php 
-                    /*if (isset($_COOKIE['assignmentWeightError'])) {
-                        echo $_COOKIE['assignmentWeightError'];
-                        unset($_COOKIE['assignmentWeightError']); 
-                        setcookie('assignmentWeightError', null, -1, '/'); 
-                    }*/
-                    
-                    ?>
-                    </p>
+                <p id="weight-error-msg"></p>
 
                 <h4 id="submitButtonAssignment">
                     <span>
                         <!------<input type="submit" name="submit" value="Submit">------>
                         <button type="button" onclick="addAssignment()">Submit</button>
                     </span>
-                    <button onclick="location.reload()">Cancel</button>
+                    <button type="button" onclick="location.reload()">Cancel</button>
                 </h4>
 
                 
