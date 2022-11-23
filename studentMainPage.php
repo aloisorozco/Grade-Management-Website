@@ -1,11 +1,14 @@
-<?php 
+<?php
 
 include "verifyUser.php";
+include "connectToDB.php";
+include "gradeFinder.php";
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +17,26 @@ include "verifyUser.php";
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footer.css">
     <script src="studentManagementHome.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+
+        function displayAssignment(name) {
+            document.cookie = "assignment=" + name;
+            console.log(document.cookie);
+            document.getElementById('assignmentName').textContent = String(name);
+            
+            updateDiv();
+        }
+        function updateDiv() {
+            $("#leftTable").load(window.location.href + " #leftTable");
+            $("#lightTable").load(window.location.href + " #lightTable");
+        }
+    </script>
+
 </head>
+
 <body>
     <header>
         <nav id="mainNav">
@@ -23,23 +45,25 @@ include "verifyUser.php";
                 <img id="menuIcon" src="book-stack.png" alt="Image of a book stack">
                 <p>Student Management System</p>
             </div>
-                <div id="subSection">
-                    <p id="teacherName">Student Name</p>
-                    <div class="action">
-                         <div class="profile" onclick="activateMenu();">
-                             <img src="ProfilePictures/profile_default.jpg" alt="Profile Picture">
-                         </div>
-                         <div class="menu">
-                             <h3>Menu</h3>
-                             <ul>
-                                 <li><img src="ProfilePictures/profile.png" alt=""><a href="studentMainPage.html">Profile</a></li>
-                                 <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
-                                 <li><img src="ProfilePictures/help.png" alt=""><a href="studentAssessmentPage.html">Settings</a></li>
-                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
-                             </ul>
-                         </div>
+            <div id="subSection">
+                <p id="teacherName">Student Name</p>
+                <div class="action">
+                    <div class="profile" onclick="activateMenu();">
+                        <img src="ProfilePictures/profile_default.jpg" alt="Profile Picture">
                     </div>
-                 </div>
+                    <div class="menu">
+                        <h3>Menu</h3>
+                        <ul>
+                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentMainPage.html">Profile</a>
+                            </li>
+                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
+                            <li><img src="ProfilePictures/help.png" alt=""><a
+                                    href="studentAssessmentPage.html">Settings</a></li>
+                            <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -54,10 +78,14 @@ include "verifyUser.php";
             <button onclick="changeAssigmentName()">Add assignment</button>
         </nav>
         -->
-  
-        
+
+
         <nav id="sideNav">
             <h3>Navigation</h3>
+
+            <?php include "AddNavElementStudent.php" ?>
+
+            <!--
             <form action="#" onclick="menuToggler()">
                 <button>Assignment 1</button>
             </form>
@@ -70,9 +98,7 @@ include "verifyUser.php";
             <form action="#" onclick="menuToggler()">
                 <button>Midterm</button>
             </form>
-            <form action="chartPageStudent.html" onclick="menuToggler()">
-                <button>Chart for Student</button>
-            </form>
+            -->
             <form action="studentAssessmentPage.html" onclick="menuToggler()">
                 <button>Dark Mode</button>
             </form>
@@ -89,19 +115,68 @@ include "verifyUser.php";
             </div>
 
             <div id="tableContainer">
-     
+
                 <div id="leftTable">
                     <p>Grade: grade%</p>
 
                 </div>
                 <div id="lightTable">
+                    <!--
                     <p>Class mean: grade%</p>
                     <p>Class median: grade%</p>
                     <p>Standard deviation: grade%</p>
+                    -->
+                    <?php
+                    include "connectToDB.php";
+                    // Get all students with a grade for this assignment
+                    $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$_COOKIE["assignment"]]);
+                    $scores = $stmt->fetchAll();
+                    //$scores[] = $rawScores['score'];
+                    $total = 0;
+                    $count = count($scores);
+
+                    $list = [];
+                    foreach ($scores as $s) {
+                        array_push($list, $s['score']);
+                    }
+
+                    if ($count != 0) {
+                        foreach ($list as $l) {
+                            $total = $total + $l;
+                        }
+
+                        $average = $total / $count;
+                        echo "<p>Class mean: " . $average . "%</p>";
+
+                        sort($list);
+
+                        $half = (int) ($count / 2);
+
+                        if ($count % 2 != 0) {
+                            $median = $list[$half];
+                        } else {
+                            $median = ($list[$half] + $list[$half - 1]) / 2;
+                        }
+
+                        echo "<p>Class median: " . $median . "%</p>";
+
+
+                        $variance = 0.0;
+
+                        foreach ($list as $x) {
+                            $variance += pow(($x - $average), 2);
+                        }
+
+                        $std = (float) sqrt($variance / $count);
+                        echo "<p>Standard deviation: " . $std . "%</p>";
+                    }
+
+                    ?>
                 </div>
 
             </div>
-            <img src="calendar.png" alt="Calendar picture">
         </div>
 
         <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
@@ -109,29 +184,29 @@ include "verifyUser.php";
             <form id="questionsForm">
 
 
-                
-            <h3 id="assignmentName">Assignment builder</h3>
 
-            <div id="titles">
-                <h4>Informations</h4>
-            </div>
+                <h3 id="assignmentName">Assignment builder</h3>
 
-            <div id="tableContainerAssignment">
-                
-                <div id="leftTable">
-                    <br>
-                    <span>Assignment Name</span>
-                    <br>
-                    <br>
-                    <span>Weight</span>
-                    <br>
-                    <br>
-                    <span>Number of Questions</span>
-                    <br>
-
+                <div id="titles">
+                    <h4>Informations</h4>
                 </div>
-                <div id="lightTable">
-                    
+
+                <div id="tableContainerAssignment">
+
+                    <div id="leftTable">
+                        <br>
+                        <span>Assignment Name</span>
+                        <br>
+                        <br>
+                        <span>Weight</span>
+                        <br>
+                        <br>
+                        <span>Number of Questions</span>
+                        <br>
+
+                    </div>
+                    <div id="lightTable">
+
                         <br>
                         <label>
                             <input type="text">
@@ -147,36 +222,36 @@ include "verifyUser.php";
                             <input type="number" oninput="addQuestion()" id="numberQuestionInput">
                         </label>
                         <br>
-                        
-                    
+
+
+                    </div>
+
+
                 </div>
-                
+                <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
+                <h3 id="assignmentName">Questions</h3>
 
-            </div>
-            <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
-            <h3 id="assignmentName">Questions</h3>
-
-            <div id="titles">
-                <h4>Question Number</h4>
-                <h4>Weight</h4>
-            </div>
+                <div id="titles">
+                    <h4>Question Number</h4>
+                    <h4>Weight</h4>
+                </div>
                 <div id="tableContainer">
                     <br id="spaceHolder">
                     <div id="leftTableAssignment">
-                        
-                            
-                        
+
+
+
                     </div>
                     <div id="lightTableAssignment">
-                    
+
                     </div>
 
                 </div>
                 <h4 id="submitButton">
-                    <input type="submit" name="submit"  value="Submit">
+                    <input type="submit" name="submit" value="Submit">
                 </h4>
-                
-        </form>
+
+            </form>
         </div>
 
 
@@ -219,4 +294,5 @@ include "verifyUser.php";
 
 
 </body>
+
 </html>
