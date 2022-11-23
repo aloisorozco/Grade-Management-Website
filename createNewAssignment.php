@@ -42,9 +42,9 @@ if (isset($_POST['assignmentName']) and (strcmp($name,"") != 0)) {
         
         foreach ($_POST as $key => $value) {
             if($key[0] == 'q'){
-                $sql = "INSERT INTO questions(assignmentName,weight) VALUES (?,?)";
+                $sql = "INSERT INTO questions(assignmentName,weight,teacherId) VALUES (?,?,?)";
                 $stmt= $pdo->prepare($sql);
-                $stmt->execute([$name, $value]);
+                $stmt->execute([$name, $value,$_COOKIE['id']]);
                 echo "$key = $value<br>";
             }
         }   

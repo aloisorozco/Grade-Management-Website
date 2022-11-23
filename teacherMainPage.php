@@ -20,11 +20,15 @@ include "gradeFinder.php";
         document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
 
         function displayAssignment(name){
+            document.getElementById('titles').style.display = 'flex';
+            document.getElementById('submitButton').style.display = 'block';
+            document.getElementById('statisticTable').style.display = 'block';
+            document.getElementById('tableContainer').style.display = 'flex';
             document.getElementById('middleSectionAssignment').style.display = "none";
             document.getElementById('middleSection').style.display = "flex";
             document.cookie = "assignment=" + name;
             document.getElementsByClassName("removeMe")[0].style.display = "none";
-            document.getElementById('tableContainer').style.height = "50%";
+            document.getElementById('tableContainer').style.height = "80%";
             console.log(document.cookie);
             document.getElementById('assignmentName').textContent = String(name);
             document.getElementById('titleStatistics').style.display = "block";
@@ -100,8 +104,8 @@ include "gradeFinder.php";
                 <button>Midterm</button>
             </form>
             -->
-            <form action="chartPageTeacher.html" onclick="menuToggler()">
-                <button>Chart For Teacher</button>
+            <form onclick="menuToggler(); location.reload()">
+                <button>Grade Chart</button>
             </form>
             <form onclick="menuToggler(); changeAssignmentName()">
                 <button type="button">Add assignment</button>
@@ -114,7 +118,7 @@ include "gradeFinder.php";
 
             <form id="middleSection" action="updateGrades.php" method="POST">
 
-                <h3 id="assignmentName">Selected Assignment</h3>
+                <h3 id="assignmentName">Average Grades</h3>
 
                 <p>
                 <?php 
@@ -150,12 +154,12 @@ include "gradeFinder.php";
 
                             foreach($students as $row){
 
-                                $sql = "SELECT score FROM grade WHERE assignmentName = ? AND studentId = ?";
+                                $sql = "SELECT score FROM grade WHERE assignmentName = ? AND studentId = ? AND teacherId = ?";
                                 $stmt= $pdo->prepare($sql);
-                                $stmt->execute([$_COOKIE["assignment"],$row['id']]);
+                                $stmt->execute([$_COOKIE["assignment"],$row['id'],$_COOKIE["id"]]);
                                 $set = $stmt->fetch();
                                 
-                                echo "<div class='formSection' style='margin-top:6%;'> <label>".$row['id']."</label> <input type='number' style='width:auto; text-align:center;' max = '100' min = '0' placeholder = '".$set['score']."' name='grade.".$row['id']."'> </div>";
+                                echo "<div class='formSection' style='margin-top:6%;'> <label>".$row['id']."</label> <input type='number' style='width:auto; text-align:center;' max = '100' min = '0' value = '".$set['score']."' name='grade.".$row['id']."'> </div>";
                                 
                                 /*
                                 $sql1 = "SELECT firstName, lastName FROM students WHERE id=?";
@@ -174,60 +178,61 @@ include "gradeFinder.php";
                 <div id="titleStatistics">
                     <h4>Statistics</h4>
                 </div>
-                <div id = "updateMe">
                     <div id = "statisticTableContainer">
                         <div id="statisticTable">
+                            <div id = "updateMe">
+                                <div class = "flex">
+                                    <?php
+                                        include "connectToDB.php";
+                                        // Get all students with a grade for this assignment
+                                        $sql = "SELECT score  FROM grade WHERE assignmentName = ? AND teacherId = ?";
+                                        $stmt= $pdo->prepare($sql);
+                                        $stmt->execute([$_COOKIE["assignment"],$_COOKIE["id"]]);
+                                        $scores = $stmt->fetchAll();
+                                        //$scores[] = $rawScores['score'];
+                                        $total = 0;
+                                        $count = count($scores);
 
-                            <?php
-                                include "connectToDB.php";
-                                // Get all students with a grade for this assignment
-                                $sql = "SELECT score  FROM grade WHERE assignmentName = ?";
-                                $stmt= $pdo->prepare($sql);
-                                $stmt->execute([$_COOKIE["assignment"]]);
-                                $scores = $stmt->fetchAll();
-                                //$scores[] = $rawScores['score'];
-                                $total = 0;
-                                $count = count($scores);
+                                        $list = [];
+                                        foreach($scores as $s){
+                                            array_push($list, $s['score']);
+                                        }
 
-                                $list = [];
-                                foreach($scores as $s){
-                                    array_push($list, $s['score']);
-                                }
+                                        if($count != 0){
+                                            foreach($list as $l){
+                                                $total = $total + $l;
+                                            }
 
-                                if($count != 0){
-                                    foreach($list as $l){
-                                        $total = $total + $l;
-                                    }
+                                            $average = $total/$count;
+                                            echo "<span style='display: inline-block;' >Mean: " . $average ."%</span>";
 
-                                    $average = $total/$count;
-                                    echo "<span style='display: inline-block;' >Mean: " . $average ."%</span>";
+                                            sort($list);
 
-                                    sort($list);
+                                            $half = (int)($count/2); 
+                                            
+                                            if($count % 2 !=0){
+                                                $median = $list[$half];
+                                            }
 
-                                    $half = (int)($count/2); 
-                                    
-                                    if($count % 2 !=0){
-                                        $median = $list[$half];
-                                    }
+                                            else{
+                                                $median = ($list[$half] + $list[$half-1])/2;
+                                            }
 
-                                    else{
-                                        $median = ($list[$half] + $list[$half-1])/2;
-                                    }
+                                            echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
+                                            
 
-                                    echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
-                                    
+                                            $variance = 0.0;
 
-                                    $variance = 0.0;
+                                            foreach($list as $x){
+                                                $variance += pow(($x - $average),2);
+                                            }
 
-                                    foreach($list as $x){
-                                        $variance += pow(($x - $average),2);
-                                    }
-
-                                    $std = (float)sqrt($variance/$count);
-                                    echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
-                                }
-                                
-                            ?>
+                                            $std = (float)sqrt($variance/$count);
+                                            echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                        }
+                                        
+                                        ?>
+                                </div>
                             <!--
                             <p>Class mean: grade%</p>
                             <p>Class median: grade%</p>
@@ -239,7 +244,7 @@ include "gradeFinder.php";
                 
                 <img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">
                 <h4 id="submitButton">
-                        <button onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
+                        <button type="button" onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
                         <button type="submit">Update Grades</button>
                 </h4>
             </form>
@@ -297,11 +302,11 @@ include "gradeFinder.php";
             <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
             <h3 id="assignmentName">Questions</h3>
 
-            <div id="titles">
+            <div id="titleAssignment">
                 <h4>Question Number</h4>
                 <h4>Weight</h4>
             </div>
-                <div id="tableContainer">
+                <div id="tableContainerAssignmentQuestions">
                     <br id="spaceHolder">
                     <div id="leftTableAssignment">
                         
@@ -316,7 +321,7 @@ include "gradeFinder.php";
 
                 <p id="weight-error-msg"></p>
 
-                <h4 id="submitButton">
+                <h4 id="submitButtonAssignment">
                     <span>
                         <!------<input type="submit" name="submit" value="Submit">------>
                         <button type="button" onclick="addAssignment()">Submit</button>
