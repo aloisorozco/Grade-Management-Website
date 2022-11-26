@@ -1,6 +1,6 @@
 <?php
 
-include "verifyUser.php";
+//include "verifyUser.php";
 include "connectToDB.php";
 include "gradeFinder.php";
 
@@ -121,7 +121,7 @@ include "gradeFinder.php";
 
                     <?php
                     include "connectToDB.php";
-                    // Get all students with a grade for this assignment
+
                     $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute([$_COOKIE["assignment"]]);
@@ -319,7 +319,7 @@ include "gradeFinder.php";
                 <div class="footer-col">
                     <h4>Get Help</h4>
                     <ul>
-                        <li><a href="#">FaQ</a></li>
+                        <li><a href="FAQPage.html">FaQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
