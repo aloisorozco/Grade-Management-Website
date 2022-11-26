@@ -16,6 +16,7 @@ include "gradeFinder.php";
     <link rel="stylesheet" href="studentMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="popup.css">
     <script src="studentManagementHome.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -26,9 +27,9 @@ include "gradeFinder.php";
             document.cookie = "assignment=" + name;
             console.log(document.cookie);
             document.getElementById('assignmentName').textContent = String(name);
-            
             updateDiv();
         }
+
         function updateDiv() {
             $("#leftTable").load(window.location.href + " #leftTable");
             $("#lightTable").load(window.location.href + " #lightTable");
@@ -37,7 +38,7 @@ include "gradeFinder.php";
 
 </head>
 
-<body>
+<body id="body">
     <header>
         <nav id="mainNav">
             <div id="subSection">
@@ -57,8 +58,7 @@ include "gradeFinder.php";
                             <li><img src="ProfilePictures/profile.png" alt=""><a href="studentMainPage.html">Profile</a>
                             </li>
                             <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a
-                                    href="studentAssessmentPage.html">Settings</a></li>
+                            <li><img src="ProfilePictures/help.png" alt=""><a href="studentAssessmentPage.html">Settings</a></li>
                             <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
                         </ul>
                     </div>
@@ -99,6 +99,7 @@ include "gradeFinder.php";
                 <button>Midterm</button>
             </form>
             -->
+
             <form action="studentAssessmentPage.html" onclick="menuToggler()">
                 <button>Dark Mode</button>
             </form>
@@ -117,15 +118,28 @@ include "gradeFinder.php";
             <div id="tableContainer">
 
                 <div id="leftTable">
-                    <p>Grade: grade%</p>
+
+                    <?php
+                    include "connectToDB.php";
+                    // Get all students with a grade for this assignment
+                    $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([$_COOKIE["assignment"]]);
+                    $set = $stmt->fetch();
+
+
+
+                    $sql1 = "SELECT assignmentName FROM grade WHERE studentId=?";
+                    $stmt = $pdo->prepare($sql1);
+                    $stmt->execute([$row['studentId']]);
+                    $name = $stmt->fetch();
+                    echo "<p>Grade" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score'] . "%</p>";
+
+                    ?>
 
                 </div>
+
                 <div id="lightTable">
-                    <!--
-                    <p>Class mean: grade%</p>
-                    <p>Class median: grade%</p>
-                    <p>Standard deviation: grade%</p>
-                    -->
                     <?php
                     include "connectToDB.php";
                     // Get all students with a grade for this assignment
@@ -175,96 +189,131 @@ include "gradeFinder.php";
 
                     ?>
                 </div>
+            </div>
+
+            <div id="titles">
+                <h4>Calendar</h4>
+            </div>
+
+            <div id="tableContainer">
+
+                <button id="calendarButton" style="height: 10%; margin: auto;"><a href="calendar.html">Access Calendar</a></button>
 
             </div>
+
         </div>
-
-        <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
-        <div id="middleSectionAssignment" style="display:none;">
-            <form id="questionsForm">
-
-
-
-                <h3 id="assignmentName">Assignment builder</h3>
-
-                <div id="titles">
-                    <h4>Informations</h4>
-                </div>
-
-                <div id="tableContainerAssignment">
-
-                    <div id="leftTable">
-                        <br>
-                        <span>Assignment Name</span>
-                        <br>
-                        <br>
-                        <span>Weight</span>
-                        <br>
-                        <br>
-                        <span>Number of Questions</span>
-                        <br>
-
-                    </div>
-                    <div id="lightTable">
-
-                        <br>
-                        <label>
-                            <input type="text">
-                        </label>
-                        <br>
-                        <br>
-                        <label>
-                            <input type="number" maxlength="100">
-                        </label>
-                        <br>
-                        <br>
-                        <label>
-                            <input type="number" oninput="addQuestion()" id="numberQuestionInput">
-                        </label>
-                        <br>
-
-
-                    </div>
-
-
-                </div>
-                <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
-                <h3 id="assignmentName">Questions</h3>
-
-                <div id="titles">
-                    <h4>Question Number</h4>
-                    <h4>Weight</h4>
-                </div>
-                <div id="tableContainer">
-                    <br id="spaceHolder">
-                    <div id="leftTableAssignment">
-
-
-
-                    </div>
-                    <div id="lightTableAssignment">
-
-                    </div>
-
-                </div>
-                <h4 id="submitButton">
-                    <input type="submit" name="submit" value="Submit">
-                </h4>
-
-            </form>
-        </div>
-
-
-
     </div>
 
-    <footer>
-        <div class="contaier">
+    <!---------------------------------------------------------- Add Assignment ---------------------------------------------------------->
+    <div id="middleSectionAssignment" style="display:none;">
+        <form id="questionsForm" action="createNewAssignment.php" method="post">
+
+            <h3 id="assignmentName">Assignment builder</h3>
+
+            <div id="titles">
+                <h4>Informations</h4>
+            </div>
+
+            <div id="tableContainerAssignment">
+
+                <br>
+                <div class="formSection">
+                    <label>Assignment Name</label>
+                    <input type="text" name="assignmentName">
+                </div>
+
+                <br>
+
+                <br>
+                <div class="formSection">
+                    <label>Weight</label>
+                    <input type="number" max=100 name="assignmentWeight">
+                </div>
+
+                <br>
+
+                <br>
+                <div class="formSection">
+                    <label>Number of Questions</label>
+                    <input type="number" oninput="addQuestion()" max=100 id="numberQuestionInput" name="assignmentNumberQuestions">
+                </div>
+
+                <br>
+
+                <br>
+                <div class="formSection">
+                    <label>Due date</label>
+                    <input type="datetime-local" id="date" min="2000-01-02" name="assignmentDueDate">
+                </div>
+
+                <br>
+
+                <div class="formSection">
+                    <label>Assignment Description</label>
+                    <textarea id="assignmentDescription" name="assignmentDescription" rows="4" cols="37"></textarea>
+                </div>
+
+
+            </div>
+            <!---------------------------------------------------------- Second table of Add Assignment ---------------------------------------------------------->
+            <h3 id="assignmentName">Questions</h3>
+
+            <div id="titles">
+                <h4>Question Number</h4>
+                <h4>Weight</h4>
+            </div>
+            <div id="tableContainer">
+                <br id="spaceHolder">
+                <div id="leftTableAssignment">
+
+
+
+                </div>
+                <div id="lightTableAssignment">
+
+                </div>
+
+            </div>
+
+            <h4 id="submitButton">
+                <span>
+                    <input type="submit" name="submit" value="Submit">
+                </span>
+                <button onclick="location.reload()">Cancel</button>
+            </h4>
+
+
+        </form>
+    </div>
+
+    <!------------------------------------------------------------------------------Popup--------------------------------------------------------------------------------------->
+    <div class="popup" id="popup-1">
+        <div class="overaly"></div>
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">&times;</div>
+            <h1>About us</h1>
+            <p>We are a school with a student management system</p>
+        </div>
+    </div>
+
+    <div class="popup" id="popup-2">
+        <div class="overaly"></div>
+        <div class="content">
+            <div class="close-btn" onclick="closePopup2()">&times;</div>
+            <h1>Academic Integrity</h1>
+            <p>Academic Integrity text</p>
+        </div>
+    </div>
+
+    <!------------------------------------------------------------------------------Footer--------------------------------------------------------------------------------------->
+
+    <footer id="footer">
+        <div class=" contaier">
             <div class="row">
                 <div class="footer-col">
                     <h4>School</h4>
                     <ul>
-                        <li><a href="#">about us</a></li>
+                        <li><a href="#" onclick="togglePopup()">about us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -282,7 +331,7 @@ include "gradeFinder.php";
                 <div class="footer-col">
                     <h4>Rules</h4>
                     <ul>
-                        <li><a href="#">Academic Integrity</a></li>
+                        <li><a href="#" onclick="togglePopup2()">Academic Integrity</a></li>
                     </ul>
                 </div>
             </div>

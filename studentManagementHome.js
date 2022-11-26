@@ -5,6 +5,38 @@ var indexq = 1;
 var teacherName = document.getElementById("teacherName");
 teacherName.textContent = getCookie('name');
 
+function togglePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(3px)";
+    all1.style.filter = "blur(3px)";
+}
+
+function closePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(0px)";
+    all1.style.filter = "blur(0px)";
+}
+
+function togglePopup2(){
+    document.getElementById("popup-2").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(3px)";
+    all1.style.filter = "blur(3px)";
+}
+
+function closePopup2(){
+    document.getElementById("popup-2").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(0px)";
+    all1.style.filter = "blur(0px)";
+}
+
 function activateMenu(){
     const toggleMenu = document.querySelector('.menu');
     toggleMenu.classList.toggle('active');
