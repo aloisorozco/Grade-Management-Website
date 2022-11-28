@@ -16,6 +16,8 @@ include "gradeFinder.php";
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footerTeacherMainPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
 
@@ -223,7 +225,7 @@ include "gradeFinder.php";
                                             }
 
                                             $std = (float)sqrt($variance/$count);
-                                            echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                            //echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
                                         }
                                         
                                         ?>
@@ -237,7 +239,132 @@ include "gradeFinder.php";
                     </div>
                 </div>
                 
-                <img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">
+                <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe", say less>-->
+                <canvas id = "myChart" height="25px" width = "100px">
+                <?php
+                include "connectToDB.php";
+
+                $tempSql = "SELECT name FROM assignment";
+                $result0 = $pdo->query($tempSql);
+                $tempArray = array();
+                while($row0 = $result0->fetch()){
+                    $tempArray[] = $row0["name"];
+                }
+
+                echo count($tempArray);
+
+                //$sqlAssignments = "SELECT assignmentName FROM assignment WHERE teacherId = ?"
+                try{
+                $sqlScore = "SELECT score FROM grade WHERE teacherId = 1";
+                $result = $pdo->query($sqlScore);
+                if($result->rowCount()>0){
+                    $gradeArray = array();
+                    while($row = $result->fetch()){
+                        $gradeArray[] = $row["score"];
+                    }
+                    unset($result);
+                }else{
+                    echo "No Records Found";
+                }
+                }catch(PDOException $e){
+                    die("Error: Could not make query".$e->getMessage());
+                }
+                
+                $sqlLabel = "SELECT assignmentName FROM grade";
+                $result2 = $pdo->query($sqlLabel);
+                if($result2->rowCount()>0){
+                    $labelArray = array();
+                    while($row2 = $result2->fetch()){
+                        $labelArray[] = $row2["assignmentName"];
+                    }
+                    unset($result2);
+                }
+                
+                $averageQuery = "SELECT avg(score) FROM grade";
+                $result3 = $pdo->query($averageQuery);
+                if($result3->rowCount()>0){
+                    $tempR = array();
+                    while($row3 = $result3->fetch()){
+                        $tempR[] = $row3["score"];
+                    }unset($result3);
+                }
+
+                
+
+                ?>
+                <script>
+                    //console.log(<?php //echo json_encode($gradeArray);?>);
+                    let grades = <?php echo json_encode($gradeArray); ?>;
+                    //console.log(grades)
+                    let labels = <?php echo json_encode($labelArray);?>;
+                    
+                    console.log(<?php echo count($tempR);?>);
+                    let grdes = [
+                        75.44,
+                        75.46,
+                        75.15,
+                        74.57,
+                        75.07,
+                        88,
+                        90
+                    ];
+                    
+                    //lets create a empty label
+                    /*
+                    let labels = [];
+                    console.log(grades.length);
+                    
+                    for(let i = 0; i <=grades.length-1;i++){
+                        labels.push(" ");
+                    }
+                    console.log(labels);
+                    */
+
+
+                   
+                    let labes = [
+                      'Assignment 1',
+                      'Assignment 2',
+                      'Assignment 3',
+                      'Assignment 4'/*,
+                      'Labs',
+                      'Midterm',
+                      'Exam',
+                      */
+                      
+                    ];
+                  
+                    const data = {
+                      labels: labels,
+                      datasets: [{
+                        label: 'Your Overall Grades',
+                        borderColor: 'rgb(240,248,255))',
+                        color: 'rgb(240,248,255)',
+                        tesnion: 0.4,
+                        data: grades,
+                      }]
+                    };
+                  
+                    const config = {
+                      type: 'line',
+                      data: data,
+                      options: {
+                        y: {
+                            min: 0,
+                            max: 100
+                            
+                        }
+                        
+                      }
+                    };
+            
+            
+                    const myChart = new Chart(
+                    document.getElementById('myChart'),config);
+                
+                    
+                    </script>
+            </canvas>
                 <h4 id="submitButton">
                         <button type="button" onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
                         <button type="submit">Update Grades</button>
