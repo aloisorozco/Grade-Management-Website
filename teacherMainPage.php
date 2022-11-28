@@ -124,13 +124,6 @@ include "gradeFinder.php";
 
                 <h3 id="assignmentName">Average Grades</h3>
 
-                <?php 
-                if (isset($_COOKIE['assignmentWeightError'])) {
-                    echo "<p>" . $_COOKIE['assignmentWeightError'] . "</p>";
-                }
-                
-                ?>
-
                 <div id="titles">
                     <h4>Student ID & Grades</h4>
                 </div>

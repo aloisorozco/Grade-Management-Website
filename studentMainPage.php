@@ -122,18 +122,22 @@ include "gradeFinder.php";
                     <?php
                     include "connectToDB.php";
                     // Get all students with a grade for this assignment
-                    $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute([$_COOKIE["assignment"]]);
-                    $set = $stmt->fetch();
 
+                    class Assignment {};
 
+                    $q1 = "SELECT score FROM grade WHERE assignmentName = '{$_COOKIE['assignment']}' AND studentId= '{$_COOKIE['id']}' LIMIT 1";
+                    $assignment = $pdo->query($q1)->fetchObject('Assignment');
+
+                    //$grade = $stmt->execute([$_COOKIE["assignment"]]);
+                    //$set = $stmt->fetch();
 
                     $sql1 = "SELECT assignmentName FROM grade WHERE studentId=?";
                     $stmt = $pdo->prepare($sql1);
                     $stmt->execute([$row['studentId']]);
                     $name = $stmt->fetch();
-                    echo "<p>Grade" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score'] . "%</p>";
+
+                    echo is_null($assignment);
+                    echo "<p>Grade: " . $assignment->score . "%</p>";
 
                     ?>
 
@@ -340,8 +344,11 @@ include "gradeFinder.php";
 
 
 
+    <script>
+        var studentName = document.getElementById("teacherName");
+        studentName.innerHTML = getCookie('name');
+    </script>
 
-    <script src="studentAssessmentPageDarkMode.js"></script>
 </body>
 
 </html>
