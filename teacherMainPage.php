@@ -63,10 +63,10 @@ include "gradeFinder.php";
                          <div class="menu">
                              <h3>Menu</h3>
                              <ul>
-                                 <li><img src="ProfilePictures/profile.png" alt=""><a href="#">Profile</a></li>
+                                 <li><img src="ProfilePictures/profile.png" alt=""><a href="teacherUpdateAccount.php">Profile</a></li>
                                  <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
                                  <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
-                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="teacherLogin.html">Logout</a></li>
+                                 <li><img src="ProfilePictures/logout.png" alt=""><a href="teacherLogin.php">Logout</a></li>
                              </ul>
                          </div>
                     </div>
