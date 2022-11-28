@@ -246,18 +246,8 @@ include "gradeFinder.php";
                 <?php
                 include "connectToDB.php";
 
-                $tempSql = "SELECT name FROM assignment";
-                $result0 = $pdo->query($tempSql);
-                $tempArray = array();
-                while($row0 = $result0->fetch()){
-                    $tempArray[] = $row0["name"];
-                }
-
-                echo count($tempArray);
-
-                //$sqlAssignments = "SELECT assignmentName FROM assignment WHERE teacherId = ?"
                 try{
-                $sqlScore = "SELECT score FROM grade WHERE teacherId = 1";
+                $sqlScore = "SELECT score FROM grade";
                 $result = $pdo->query($sqlScore);
                 if($result->rowCount()>0){
                     $gradeArray = array();
@@ -282,59 +272,63 @@ include "gradeFinder.php";
                     unset($result2);
                 }
                 
-                $averageQuery = "SELECT avg(score) FROM grade";
-                $result3 = $pdo->query($averageQuery);
+                $sqlAssignmentNames = "SELECT name FROM assignment";
+                $result3 = $pdo->query($sqlAssignmentNames);
                 if($result3->rowCount()>0){
-                    $tempR = array();
+                    $assignmentNames = array();
                     while($row3 = $result3->fetch()){
-                        $tempR[] = $row3["score"];
-                    }unset($result3);
+                        $assignmentNames[] = $row3["name"];
+                    }
+                    unset($result3);
                 }
+
+                //now we have this array of just assignment names;
+                //gets get values only of specific assignment
+
+                
+                
+                $averageFromGrade = array();
+                
+                $assignemtGrade = array();
+                $scoreFromAssignmentName = "SELECT avg(score) FROM grade GROUP BY assignmentName";
+                $result4 = $pdo->query($scoreFromAssignmentName);
+                    
+                if($result4->rowCount()>0){
+                    while($row4 = $result4->fetch()){
+                        $assignmentGrade[] = $row4["avg(score)"];
+                        
+                    }
+                    array_push($averageFromGrade,array_sum($assignmentGrade)/count($assignmentGrade));
+                }
+                
+                
+
+                
+                
+                
+                //array_push($averageFromGrade,array_sum($assignmentGrade)/count($assignmentGrade));
+                //array_push($averageFromGrade,array_sum($assignmentGrade2)/count($assignmentGrade2));
+
+                //"SELECT assignmentName,avg(score) FROM grade GROUP BY assignmentName"
 
                 
 
                 ?>
                 <script>
-                    //console.log(<?php //echo json_encode($gradeArray);?>);
-                    let grades = <?php echo json_encode($gradeArray); ?>;
-                    //console.log(grades)
-                    let labels = <?php echo json_encode($labelArray);?>;
+                    console.log(<?php print_r(json_encode($result4));?>);
+                    console.log(<?php echo json_encode($assignmentNames); ?>);
+                    console.log(<?php echo json_encode($gradeArray); ?>);
+                    console.log(<?php echo json_encode($labelArray); ?>);
+                    console.log(<?php echo json_encode($assignmentGrade); ?>);
                     
-                    console.log(<?php echo count($tempR);?>);
-                    let grdes = [
-                        75.44,
-                        75.46,
-                        75.15,
-                        74.57,
-                        75.07,
-                        88,
-                        90
-                    ];
-                    
-                    //lets create a empty label
-                    /*
-                    let labels = [];
-                    console.log(grades.length);
-                    
-                    for(let i = 0; i <=grades.length-1;i++){
-                        labels.push(" ");
-                    }
-                    console.log(labels);
-                    */
 
 
+
+                    let grades = <?php echo json_encode($assignmentGrade); ?>;
+                    
+                    
+                    let labels = <?php echo json_encode($assignmentNames);?>;
                    
-                    let labes = [
-                      'Assignment 1',
-                      'Assignment 2',
-                      'Assignment 3',
-                      'Assignment 4'/*,
-                      'Labs',
-                      'Midterm',
-                      'Exam',
-                      */
-                      
-                    ];
                   
                     const data = {
                       labels: labels,
