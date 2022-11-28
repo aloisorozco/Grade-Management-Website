@@ -100,9 +100,9 @@ include "gradeFinder.php";
             </form>
             -->
 
-            <form action="studentAssessmentPage.html" onclick="menuToggler()">
-                <button>Dark Mode</button>
-            </form>
+            <button id="dark-button">
+                <i class="dark-button"></i>Switch Theme
+            </button> 
 
         </nav>
 
@@ -341,7 +341,7 @@ include "gradeFinder.php";
 
 
 
-
+    <script src="studentAssessmentPageDarkMode.js"></script>
 </body>
 
 </html>
