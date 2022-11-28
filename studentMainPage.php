@@ -55,11 +55,11 @@ include "gradeFinder.php";
                     <div class="menu">
                         <h3>Menu</h3>
                         <ul>
-                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentMainPage.html">Profile</a>
+                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a>
                             </li>
                             <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="studentAssessmentPage.html">Settings</a></li>
-                            <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
+                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
+                            <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.php">Logout</a></li>
                         </ul>
                     </div>
                 </div>

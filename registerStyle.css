@@ -80,3 +80,7 @@ select {
         padding-top: 20vh;
     }
 }
+
+input { 
+    text-align: center; 
+}
