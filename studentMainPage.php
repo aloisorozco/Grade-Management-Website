@@ -100,9 +100,9 @@ include "gradeFinder.php";
             </form>
             -->
 
-            <form action="studentAssessmentPage.html" onclick="menuToggler()">
-                <button>Dark Mode</button>
-            </form>
+            <button id="dark-button">
+                <i class="dark-button"></i>Switch Theme
+            </button>
 
         </nav>
 
@@ -122,10 +122,6 @@ include "gradeFinder.php";
                     <?php
                     include "connectToDB.php";
                     // Get all students with a grade for this assignment
-                    $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute([$_COOKIE["assignment"]]);
-                    $set = $stmt->fetch();
 
                     class Assignment {};
 
@@ -348,6 +344,7 @@ include "gradeFinder.php";
         var studentName = document.getElementById("teacherName");
         studentName.innerHTML = getCookie('name');
     </script>
+    <script src="studentAssessmentPageDarkMode.js"></script>
 
 </body>
 

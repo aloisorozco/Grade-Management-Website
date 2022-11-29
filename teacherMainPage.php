@@ -111,6 +111,9 @@ include "gradeFinder.php";
                 <button type="button">Add assignment</button>
             </form>
 
+            <button id="dark-button">
+                <i class="dark-button"></i>Switch Theme
+            </button>
             
         </nav>
 
@@ -357,6 +360,7 @@ include "gradeFinder.php";
     </footer>
 
     <script src="studentManagementHome.js"></script>
+    <script src="studentAssessmentPageDarkMode.js"></script>
     
 </body>
 </html>
