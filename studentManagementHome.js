@@ -66,6 +66,7 @@ function menuToggler(){
 function changeAssignmentName(){
     document.getElementById('middleSectionAssignment').style.display = 'block';
     document.getElementById('middleSection').style.display = 'none';
+     document.getElementById('titles').style.display = 'flex';
     //document.getElementById('header').style.backgroundColor='red';
 }
 
@@ -95,6 +96,7 @@ function addQuestion(){
         let input = document.createElement('input');
         input.size=4;
         input.name = "q" + i;
+        input.className = "question-weight-input";
         input.style.marginLeft='4em';
         containerLeft.appendChild(document.createElement('br'));
         let index = document.createElement('span');
@@ -151,7 +153,32 @@ function getCookie(cName) {
     cArr.forEach(val => {
       if (val.indexOf(name) === 0) res = val.substring(name.length);
     })
-    return res
+    return res;
   }
 
+function addAssignment() {
+    if (checkQuestionsWeight()) {
+        document.getElementById("weight-error-msg").innerHTML = "";
+        document.getElementById("questionsForm").submit();
+    }
+    else {
+        document.getElementById("weight-error-msg").innerHTML = "Weight of questions must equal 100";
+    }
+}
 
+
+function checkQuestionsWeight() {
+    const questionWeightArr = document.getElementsByClassName("question-weight-input");
+
+    console.log(questionWeightArr.length);
+
+    let totalWeight = 0;
+
+    for (let i = 0; i < questionWeightArr.length; i++) {
+        console.log(questionWeightArr[i].value);
+        totalWeight += parseInt(questionWeightArr[i].value);
+    }
+    console.log(totalWeight);
+
+    return totalWeight == 100;
+}
