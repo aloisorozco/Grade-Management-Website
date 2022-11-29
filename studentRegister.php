@@ -12,7 +12,7 @@ class Teacher {};
 
 if (isset($_POST['email'])) {
 
-    $q1 = "SELECT id, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+    $q1 = "SELECT email FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
     $q2 = "INSERT INTO students (email, password, firstName, lastName, teacherId) VALUES (?,?,?,?,?)";
     
 
@@ -75,12 +75,12 @@ if (isset($_POST['email'])) {
                         <div class="mb-3 text-div">
                             <div class="mb-2 ind-div">
                                 <label for="teacher" class="form-label" id="teacherMsg">Teacher</label>
-                                <select class="form-select" id="teacherOption" name="teacherOption">
+                                <select class="form-select-lg" id="teacherOption" name="teacherOption">
                                     <?php 
-                                    $teachers = $pdo->query('SELECT id, firstName, lastName FROM teachers')->fetchAll(PDO::FETCH_CLASS, 'Teacher');
+                                    $teachers = $pdo->query('SELECT id, firstName, lastName, className FROM teachers')->fetchAll(PDO::FETCH_CLASS, 'Teacher');
 
                                     foreach ($teachers as $teacher) {
-                                        echo "<option value=\"" . $teacher->id . "\" selected=\"selected\">" . $teacher->firstName . " " . $teacher->lastName . "</option>";
+                                        echo "<option value=\"" . $teacher->id . "\" selected=\"selected\">" . $teacher->className . " - " . $teacher->firstName . " " . $teacher->lastName . "</option>";
                                     }
                                     ?>
                                 </select>
