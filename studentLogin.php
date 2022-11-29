@@ -10,7 +10,7 @@ class Student {};
 
 if (isset($_POST['email'])) {
 
-    $q = "SELECT id, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+    $q = "SELECT id, firstName, lastName, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
         
     $student = $pdo->query($q)->fetchObject('Student');
 
@@ -20,6 +20,7 @@ if (isset($_POST['email'])) {
     }
     else {
         setcookie("id", $student->id, time() + (86400 * 30), "/");
+        setcookie("name", $student->firstName . " " . $student->lastName, time() + (86400 * 30), "/");
         setcookie("isStudent", true, time() + (86400 * 30), "/");
         header("Location: studentMainPage.php");
         exit();
