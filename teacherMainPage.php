@@ -232,7 +232,7 @@ include "gradeFinder.php";
                 </div>
                 
                 <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">-->
-                <canvas id = "myChart" display="block" class="removeMe" height="25px" width = "100px">
+                <canvas id = "myChart" display="block" class="removeMe" height="70px" width = "100px">
                 <?php
                 include "connectToDB.php";
 
@@ -261,8 +261,9 @@ include "gradeFinder.php";
                     }
                     unset($result2);
                 }
-                
-                $sqlAssignmentNames = "SELECT name FROM assignment";
+
+                /*
+                $sqlAssignmentNames = "SELECT assignmentName FROM grade GROUP BY assignmentName";
                 $result3 = $pdo->query($sqlAssignmentNames);
                 if($result3->rowCount()>0){
                     $assignmentNames = array();
@@ -275,10 +276,22 @@ include "gradeFinder.php";
                 //now we have this array of just assignment names;
                 //gets get values only of specific assignment
 
+                */
+
+                $sqlAssignmentNames = "SELECT assignmentName FROM grade GROUP BY assignmentName";
+                
+                $result5 = $pdo->query($sqlAssignmentNames);
+                if($result5->rowCount()>0){
+                    $assignmentNames = array();
+                    while($row5 = $result5->fetch()){
+                        $assignmentNames[] = $row5["assignmentName"];
+                    }
+                    unset($result5);
+                }
+                
                 
                 
                 $averageFromGrade = array();
-                
                 $assignemtGrade = array();
                 $scoreFromAssignmentName = "SELECT avg(score) FROM grade GROUP BY assignmentName";
                 $result4 = $pdo->query($scoreFromAssignmentName);
@@ -291,16 +304,11 @@ include "gradeFinder.php";
                     array_push($averageFromGrade,array_sum($assignmentGrade)/count($assignmentGrade));
                 }
                 
-                
 
                 
                 
+
                 
-                //array_push($averageFromGrade,array_sum($assignmentGrade)/count($assignmentGrade));
-                //array_push($averageFromGrade,array_sum($assignmentGrade2)/count($assignmentGrade2));
-
-                //"SELECT assignmentName,avg(score) FROM grade GROUP BY assignmentName"
-
                 
 
                 ?>
@@ -316,6 +324,10 @@ include "gradeFinder.php";
 
                     let grades = <?php echo json_encode($assignmentGrade); ?>;
                     
+                    for(let i = 0; i<=grades.length-1;i++){
+                        //if(grades[i] == 0)
+                            
+                    }
                     
                     let labels = <?php echo json_encode($assignmentNames);?>;
                     Chart.defaults.backgroundColor = '#C8C8C8';
