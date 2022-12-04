@@ -232,7 +232,7 @@ include "gradeFinder.php";
                 </div>
                 
                 <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">-->
-                <canvas id = "myChart" display="block" class="removeMe" height="70px" width = "100px">
+                <canvas id = "myChart" display="block" class="removeMe" height="50px" width = "100px">
                 <?php
                 include "connectToDB.php";
 
