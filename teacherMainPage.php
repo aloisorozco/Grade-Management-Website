@@ -17,6 +17,7 @@ include "gradeFinder.php";
     <link rel="stylesheet" href="footerTeacherMainPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         document.cookie = "assignment= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
 
@@ -111,11 +112,11 @@ include "gradeFinder.php";
             <form onclick="menuToggler(); changeAssignmentName()">
                 <button type="button">Add assignment</button>
             </form>
-
             <button id="dark-button">
                 <i class="dark-button"></i>Switch Theme
-            </button>
-            
+            </button> 
+
+
         </nav>
 
         <!---------------------------------------------------------- Default ---------------------------------------------------------->
@@ -220,7 +221,7 @@ include "gradeFinder.php";
                                             }
 
                                             $std = (float)sqrt($variance/$count);
-                                            echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                            //echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
                                         }
                                         
                                         ?>
@@ -236,6 +237,7 @@ include "gradeFinder.php";
                 
                 <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">-->
                 <canvas id = "myChart" display="block" class="removeMe" height="25px" width = "100px">
+
                 <?php
                 include "connectToDB.php";
 
@@ -321,16 +323,18 @@ include "gradeFinder.php";
                     
                     
                     let labels = <?php echo json_encode($assignmentNames);?>;
+
                     Chart.defaults.backgroundColor = '#C8C8C8';
                     Chart.defaults.borderColor = '#000000';
                     Chart.defaults.color = '#000000';
-                    
+
                    
                   
                     const data = {
                       labels: labels,
                       datasets: [{
                         label: 'Your Overall Grades',
+
                         borderColor: 'rgb(0,0,0))',
                         color: 'rgb(240,248,255))',
                         tesnion: 0.4,
@@ -357,6 +361,7 @@ include "gradeFinder.php";
                 
                     
                     </script>
+
                 </canvas>
                 <h4 id="submitButton">
                         <button type="button" onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
@@ -485,6 +490,6 @@ include "gradeFinder.php";
 
     <script src="studentManagementHome.js"></script>
     <script src="studentAssessmentPageDarkMode.js"></script>
-    
+
 </body>
 </html>

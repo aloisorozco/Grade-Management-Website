@@ -2,8 +2,47 @@ var mediaLarge = window.matchMedia("(min-width: 1100px)");
 mediaLarge.addEventListener("change",mediaLargeHandler);
 var indexq = 1; 
 
-var teacherName = document.getElementById("teacherName");
-teacherName.textContent = getCookie('name');
+if (window.location.pathname.includes("student")) {
+    var studentName = document.getElementById("studentName");
+    studentName.innerHTML = getCookie('name');
+}
+else {
+    var teacherName = document.getElementById("teacherName");
+    teacherName.textContent = getCookie('name');
+}
+
+
+function togglePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(3px)";
+    all1.style.filter = "blur(3px)";
+}
+
+function closePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(0px)";
+    all1.style.filter = "blur(0px)";
+}
+
+function togglePopup2(){
+    document.getElementById("popup-2").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(3px)";
+    all1.style.filter = "blur(3px)";
+}
+
+function closePopup2(){
+    document.getElementById("popup-2").classList.toggle("active");
+    var all = document.getElementById('middleSection');
+    var all1 = document.getElementById('middleSectionAssignment');
+    all.style.filter = "blur(0px)";
+    all1.style.filter = "blur(0px)";
+}
 
 function togglePopup(){
     document.getElementById("popup-1").classList.toggle("active");
