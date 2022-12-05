@@ -220,8 +220,8 @@ include "gradeFinder.php";
                                                 $variance += pow(($x - $average),2);
                                             }
 
-                                            $std = (float)sqrt($variance/$count);
-                                            //echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
+                                            $std = round((float)sqrt($variance/$count),2);
+                                            echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
                                         }
                                         
                                         ?>
