@@ -10,7 +10,7 @@ class Student {};
 
 if (isset($_POST['email'])) {
 
-    $q = "SELECT id, email, firstName, lastName, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
+    $q = "SELECT id, firstName, lastName, email, password FROM students WHERE email='{$_POST['email']}' AND password='{$_POST['password']}' LIMIT 1";
         
     $student = $pdo->query($q)->fetchObject('Student');
 

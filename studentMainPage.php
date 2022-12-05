@@ -55,8 +55,7 @@ include "gradeFinder.php";
                     <div class="menu">
                         <h3>Menu</h3>
                         <ul>
-                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a>
-                            </li>
+                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a></li>
                             <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
                             <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.php">Logout</a></li>
                         </ul>
@@ -122,9 +121,7 @@ include "gradeFinder.php";
                     include "connectToDB.php";
                     // Get all students with a grade for this assignment
 
-                    class Assignment
-                    {
-                    };
+                    class Assignment {};
 
                     $q1 = "SELECT score FROM grade WHERE assignmentName = '{$_COOKIE['assignment']}' AND studentId= '{$_COOKIE['id']}' LIMIT 1";
                     $assignment = $pdo->query($q1)->fetchObject('Assignment');
@@ -298,6 +295,7 @@ include "gradeFinder.php";
             <div class="close-btn" onclick="closePopup()">&times;</div>
             <h1>About us</h1>
             <p>Students should contact help@gmail.ca for help. If it is an urgent matter please call the IITS Service Desk at (514) 848-2424 ext 7613 and they will see that your problem is referred to the Moodle support team.</p>
+
         </div>
     </div>
 
@@ -319,6 +317,7 @@ include "gradeFinder.php";
                     <h4>School</h4>
                     <ul>
                         <li><a href="#" onclick="togglePopup()">About us</a></li>
+
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -338,12 +337,13 @@ include "gradeFinder.php";
         </div>
     </footer>
 
-
-
     <script>
         var studentName = document.getElementById("teacherName");
         studentName.innerHTML = getCookie('name');
     </script>
+
+    <script src="studentAssessmentPageDarkMode.js"></script>
+
 
 </body>
 

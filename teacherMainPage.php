@@ -116,6 +116,7 @@ include "gradeFinder.php";
                 <i class="dark-button"></i>Switch Theme
             </button> 
 
+
         </nav>
 
         <!---------------------------------------------------------- Default ---------------------------------------------------------->
@@ -234,8 +235,9 @@ include "gradeFinder.php";
                     </div>
                 </div>
                 
-                <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe", say less>-->
-                <canvas id = "myChart" height="25px" width = "100px">
+                <!--<img src="snd.png" alt="A gaussian distribution" display = "block" class="removeMe">-->
+                <canvas id = "myChart" display="block" class="removeMe" height="25px" width = "100px">
+
                 <?php
                 include "connectToDB.php";
 
@@ -321,14 +323,20 @@ include "gradeFinder.php";
                     
                     
                     let labels = <?php echo json_encode($assignmentNames);?>;
+
+                    Chart.defaults.backgroundColor = '#C8C8C8';
+                    Chart.defaults.borderColor = '#000000';
+                    Chart.defaults.color = '#000000';
+
                    
                   
                     const data = {
                       labels: labels,
                       datasets: [{
                         label: 'Your Overall Grades',
-                        borderColor: 'rgb(240,248,255))',
-                        color: 'rgb(240,248,255)',
+
+                        borderColor: 'rgb(0,0,0))',
+                        color: 'rgb(240,248,255))',
                         tesnion: 0.4,
                         data: grades,
                       }]
@@ -353,7 +361,8 @@ include "gradeFinder.php";
                 
                     
                     </script>
-            </canvas>
+
+                </canvas>
                 <h4 id="submitButton">
                         <button type="button" onclick="window.location.href='removeAssignment.php'">Remove Assignment</button>
                         <button type="submit">Update Grades</button>
@@ -481,5 +490,6 @@ include "gradeFinder.php";
 
     <script src="studentManagementHome.js"></script>
     <script src="studentAssessmentPageDarkMode.js"></script>
+
 </body>
 </html>
