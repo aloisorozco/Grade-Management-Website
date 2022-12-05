@@ -25,32 +25,22 @@ if (isset($_POST['assignmentName']) and (strcmp($name,"") != 0)) {
     $totalWeight += $_POST["assignmentWeight"];
     echo $totalWeight;
 
-    if ($totalWeight > 100) {
-        $error = "Total weight of assignments must be under 100";
-        setcookie("assignmentWeightError", $error, time() + 1, "/");
-        echo  $error ;
-    }
-    else {
-        
-        
-        $sql = "INSERT INTO assignment(description,dueDate,name,number_of_questions,teacherId,weight) VALUES (?,?,?,?,?,?)";
-        $stmt= $pdo->prepare($sql);
-        $stmt->execute([$description, $dueDate,$name,$nbQuestions,$_COOKIE["id"],$weight]);
-        
-        //$sql = "INSERT INTO questions VALUES (name,weight)";
-        //For each questions
-        
-        foreach ($_POST as $key => $value) {
-            if($key[0] == 'q'){
-                $sql = "INSERT INTO questions(assignmentName,weight,teacherId) VALUES (?,?,?)";
-                $stmt= $pdo->prepare($sql);
-                $stmt->execute([$name, $value,$_COOKIE['id']]);
-                echo "$key = $value<br>";
-            }
-        }   
+    $sql = "INSERT INTO assignment(description,dueDate,name,number_of_questions,teacherId,weight) VALUES (?,?,?,?,?,?)";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$description, $dueDate,$name,$nbQuestions,$_COOKIE["id"],$weight]);
+    
+    //$sql = "INSERT INTO questions VALUES (name,weight)";
+    //For each questions
+    
+    foreach ($_POST as $key => $value) {
+        if($key[0] == 'q'){
+            $sql = "INSERT INTO questions(assignmentName,weight,teacherId) VALUES (?,?,?)";
+            $stmt= $pdo->prepare($sql);
+            $stmt->execute([$name, $value,$_COOKIE['id']]);
+            echo "$key = $value<br>";
+        }
     }
 
-    
     header("Location: teacherMainPage.php");
 }
 ?>

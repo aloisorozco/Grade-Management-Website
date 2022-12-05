@@ -2,6 +2,16 @@
 
 error_reporting(E_ERROR | E_PARSE);
 
+//my php is running on an old version
+
+if (!function_exists('str_contains')) {
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+}
+
+
 if(!isset($_COOKIE["id"])) {
     header("Location: studentLogin.php");
     exit();

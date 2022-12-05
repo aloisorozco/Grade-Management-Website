@@ -1,3 +1,43 @@
+:root{
+    --body: #8D99AE;
+    --name: #C1D3FE;
+    --nametext: black;
+    --sidenavbody: #DEE2E6;
+    --sidenavtittle: #023E8A;
+    --sidenavbutton: #E2EAFC;
+    --sidenavbuttontext: black;
+    --middlebox: #C8C8C8;
+    --middleboxtitle: #023E8A;
+    --tabletitle: #C1D3FE;
+    --tablebody: #E2EAFC;
+    --tabletitletext: black;
+    --statstablebody: #E2EAFC;
+    --statstitle: #C1D3FE;
+    --statstitletext: black;
+    --addassignmentbody: #E2EAFC;
+    
+}
+
+.darkmode{
+    --body: #020b17;
+    --name: #616369;
+    --nametext: #C1D3FE;
+    --sidenavbody: #242b34;
+    --sidenavtittle: #112d51;
+    --sidenavbutton: #5b7494;
+    --sidenavbuttontext: #C1D3FE;
+    --middlebox: #61637b;
+    --middleboxtitle: #112d51;
+    --tabletitle: #516188;
+    --tablebody: #a4b5df;  
+    --tabletitletext: #C1D3FE;
+    --statstablebody: #a4b5df;
+    --statstitle: #516188;
+    --statstitletext: #C1D3FE;
+    --addassignmentbody: #a4b5df;
+
+}
+
 html{
     height: 100%;
     width: 100%;
@@ -6,7 +46,7 @@ body{
     height: 100%;
     width: 100%;
     margin: 0px;
-    background-color:#8D99AE;
+    background-color:var(--body);
 }
 
 header{
@@ -90,8 +130,8 @@ h4{
     }
     
     #teacherName{
-        color: black;
-        background-color: #C1D3FE;
+        color: var(--nametext);
+        background-color: var(--name);
         height: 39px;
         line-height: 39px;
         padding-left: 2em;
@@ -110,7 +150,7 @@ h4{
         display: flex;
         flex-direction: column;
         margin-top: 1px;
-        background-color: #DEE2E6;
+        background-color: var(--sidenavbody);
         width: 20vw;
         height: 78%;
         max-width: 200px;
@@ -120,7 +160,7 @@ h4{
     }
     
     #sideNav h3{
-        background-color: #023E8A;
+        background-color: var(--sidenavtittle);
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -130,7 +170,8 @@ h4{
     }
     
     #sideNav button{
-        background-color: #E2EAFC;
+        background-color: var(--sidenavbutton);
+        color: var(--sidenavbuttontext);
         border-color: #C8C8C8;
         padding: 0.7em;
         margin-bottom: 0.7em;
@@ -145,14 +186,14 @@ h4{
     #middleSection{
         display: flex;
         flex-direction: column;
-        background-color: #C8C8C8;
+        background-color: var(--middlebox);
         height: 85%;
         margin-top: 3%;
         width: 55%;
     }
     
     #middleSection h3{
-        background-color:#023E8A ;
+        background-color:var(--middleboxtitle) ;
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -177,7 +218,7 @@ h4{
     #tableContainer{
         display: flex;
         justify-content: space-around;
-        background-color: #E2EAFC;
+        background-color: var(--tablebody);
         margin-left: 5%;
         margin-right: 5%;
         height: 40%;
@@ -196,7 +237,8 @@ h4{
     #titles{
         display: flex;
         justify-content: space-around;
-        background-color:#C1D3FE ;
+        background-color:var(--tabletitle);
+        color: var(--tabletitletext);
         margin-left: 5%;
         margin-right: 5%;
     }
@@ -254,7 +296,7 @@ h4{
         display: flex;
         flex-direction: column;
         margin-top: 1px;
-        background-color: #DEE2E6;
+        background-color: var(--sidenavbody);
         width: 50%;
         height: 93%;
         max-width: 200px;
@@ -265,7 +307,7 @@ h4{
     }
     
     #sideNav h3{
-        background-color: #023E8A;
+        background-color: var(--sidenavtittle);
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -276,7 +318,8 @@ h4{
     }
     
     #sideNav button{
-        background-color: #E2EAFC;
+        background-color: var(--sidenavbutton);
+        color: var(--sidenavbuttontext);
         border-color: #C8C8C8;
         padding: 0.7em;
         margin-bottom: 0.7em;
@@ -291,14 +334,14 @@ h4{
     #middleSection{
         display: flex;
         flex-direction: column;
-        background-color: #C8C8C8;
+        background-color: var(--middlebox);
         height: 85%;
         margin-top: 3%;
         width: 85%;
     }
     
     #middleSection h3{
-        background-color:#023E8A ;
+        background-color:var(--middleboxtitle) ;
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -307,7 +350,7 @@ h4{
     #tableContainer{
         display: flex;
         justify-content: space-around;
-        background-color: #E2EAFC;
+        background-color: var(--tablebody);
         margin-left: 5%;
         margin-right: 5%;
         height: 40%;
@@ -320,7 +363,8 @@ h4{
     #titles{
         display: flex;
         justify-content: space-around;
-        background-color:#C1D3FE ;
+        background-color:var(--tabletitle) ;
+        color: var(--tabletitletext);
         margin-left: 5%;
         margin-right: 5%;
     }

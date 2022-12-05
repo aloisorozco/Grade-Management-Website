@@ -1,6 +1,6 @@
 <?php
 
-//include "verifyUser.php";
+include "verifyUser.php";
 include "connectToDB.php";
 include "gradeFinder.php";
 
@@ -55,11 +55,10 @@ include "gradeFinder.php";
                     <div class="menu">
                         <h3>Menu</h3>
                         <ul>
-                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentMainPage.html">Profile</a>
+                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a>
                             </li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="studentAssessmentPage.html">Settings</a></li>
-                            <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.html">Logout</a></li>
+                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
+                            <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.php">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,9 +99,9 @@ include "gradeFinder.php";
             </form>
             -->
 
-            <form action="studentAssessmentPage.html" onclick="menuToggler()">
-                <button>Dark Mode</button>
-            </form>
+            <button id="dark-button">
+                <i class="dark-button"></i>Switch Theme
+            </button>
 
         </nav>
 
@@ -121,19 +120,25 @@ include "gradeFinder.php";
 
                     <?php
                     include "connectToDB.php";
+                    // Get all students with a grade for this assignment
 
-                    $sql = "SELECT studentId, score FROM grade WHERE assignmentName = ?";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute([$_COOKIE["assignment"]]);
-                    $set = $stmt->fetch();
+                    class Assignment
+                    {
+                    };
 
+                    $q1 = "SELECT score FROM grade WHERE assignmentName = '{$_COOKIE['assignment']}' AND studentId= '{$_COOKIE['id']}' LIMIT 1";
+                    $assignment = $pdo->query($q1)->fetchObject('Assignment');
 
+                    //$grade = $stmt->execute([$_COOKIE["assignment"]]);
+                    //$set = $stmt->fetch();
 
                     $sql1 = "SELECT assignmentName FROM grade WHERE studentId=?";
                     $stmt = $pdo->prepare($sql1);
                     $stmt->execute([$row['studentId']]);
                     $name = $stmt->fetch();
-                    echo "<p>Grade" . $name['firstName'] . " " . $name['lastName'] . ": " . $row['score'] . "%</p>";
+
+                    echo is_null($assignment);
+                    echo "<p>Grade: " . $assignment->score . "%</p>";
 
                     ?>
 
@@ -292,7 +297,7 @@ include "gradeFinder.php";
         <div class="content">
             <div class="close-btn" onclick="closePopup()">&times;</div>
             <h1>About us</h1>
-            <p>We are a school with a student management system</p>
+            <p>Students should contact help@gmail.ca for help. If it is an urgent matter please call the IITS Service Desk at (514) 848-2424 ext 7613 and they will see that your problem is referred to the Moodle support team.</p>
         </div>
     </div>
 
@@ -301,7 +306,7 @@ include "gradeFinder.php";
         <div class="content">
             <div class="close-btn" onclick="closePopup2()">&times;</div>
             <h1>Academic Integrity</h1>
-            <p>Academic Integrity text</p>
+            <p>We place the principle of academic integrity, that is, honesty, responsibility and fairness in all aspects of academic life, as one of its highest values.</p>
         </div>
     </div>
 
@@ -313,7 +318,7 @@ include "gradeFinder.php";
                 <div class="footer-col">
                     <h4>School</h4>
                     <ul>
-                        <li><a href="#" onclick="togglePopup()">about us</a></li>
+                        <li><a href="#" onclick="togglePopup()">About us</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -322,12 +327,7 @@ include "gradeFinder.php";
                         <li><a href="FAQPage.html">FaQ</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Online Shop</h4>
-                    <ul>
-                        <li><a href="#">Books</a></li>
-                    </ul>
-                </div>
+
                 <div class="footer-col">
                     <h4>Rules</h4>
                     <ul>
@@ -340,7 +340,10 @@ include "gradeFinder.php";
 
 
 
-
+    <script>
+        var studentName = document.getElementById("teacherName");
+        studentName.innerHTML = getCookie('name');
+    </script>
 
 </body>
 

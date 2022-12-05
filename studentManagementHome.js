@@ -2,8 +2,15 @@ var mediaLarge = window.matchMedia("(min-width: 1100px)");
 mediaLarge.addEventListener("change",mediaLargeHandler);
 var indexq = 1; 
 
-var teacherName = document.getElementById("teacherName");
-teacherName.textContent = getCookie('name');
+if (window.location.pathname.includes("student")) {
+    var studentName = document.getElementById("studentName");
+    studentName.innerHTML = getCookie('name');
+}
+else {
+    var teacherName = document.getElementById("teacherName");
+    teacherName.textContent = getCookie('name');
+}
+
 
 function togglePopup(){
     document.getElementById("popup-1").classList.toggle("active");
