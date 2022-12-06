@@ -15,7 +15,8 @@
     --statstitle: #C1D3FE;
     --statstitletext: black;
     --addassignmentbody: #E2EAFC;
-    
+    --hovertext : black;
+    --hoverbutton: #C1D3FE;
 }
 
 .darkmode{
@@ -35,7 +36,8 @@
     --statstitle: #516188;
     --statstitletext: #C1D3FE;
     --addassignmentbody: #a4b5df;
-
+    --hovertext : #e6e9f1;
+    --hoverbutton: #8d9bbb;
 }
 
 html{
@@ -180,7 +182,8 @@ h4{
     }
     
     #sideNav button:hover,button:active{
-        background-color: #C1D3FE;
+        background-color: var(--hoverbutton);
+        color: var(--hovertext);
     }
     
     #middleSection{
@@ -328,7 +331,8 @@ h4{
     }
     
     #sideNav button:hover,button:active{
-        background-color: #C1D3FE;
+        background-color: var(--hoverbutton);
+        color: var(--hovertext);
     }
     
     #middleSection{
