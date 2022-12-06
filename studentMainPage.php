@@ -55,9 +55,7 @@ include "gradeFinder.php";
                     <div class="menu">
                         <h3>Menu</h3>
                         <ul>
-                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a>
-                            </li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Grades</a></li>
+                            <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a></li>
                             <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
                             <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.php">Logout</a></li>
                         </ul>
@@ -135,6 +133,8 @@ include "gradeFinder.php";
                     $stmt = $pdo->prepare($sql1);
                     $stmt->execute([$row['studentId']]);
                     $name = $stmt->fetch();
+
+                    echo is_null($assignment);
                     echo "<p>Grade: " . $assignment->score . "%</p>";
 
                     ?>
@@ -294,7 +294,8 @@ include "gradeFinder.php";
         <div class="content">
             <div class="close-btn" onclick="closePopup()">&times;</div>
             <h1>About us</h1>
-            <p>We are a school with a student management system</p>
+            <p>Students should contact help@gmail.ca for help. If it is an urgent matter please call the IITS Service Desk at (514) 848-2424 ext 7613 and they will see that your problem is referred to the Moodle support team.</p>
+
         </div>
     </div>
 
@@ -303,7 +304,7 @@ include "gradeFinder.php";
         <div class="content">
             <div class="close-btn" onclick="closePopup2()">&times;</div>
             <h1>Academic Integrity</h1>
-            <p>Academic Integrity text</p>
+            <p>We place the principle of academic integrity, that is, honesty, responsibility and fairness in all aspects of academic life, as one of its highest values.</p>
         </div>
     </div>
 
@@ -315,21 +316,17 @@ include "gradeFinder.php";
                 <div class="footer-col">
                     <h4>School</h4>
                     <ul>
-                        <li><a href="#" onclick="togglePopup()">about us</a></li>
+                        <li><a href="#" onclick="togglePopup()">About us</a></li>
+
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Get Help</h4>
                     <ul>
-                        <li><a href="#">FaQ</a></li>
+                        <li><a href="FAQPage.html">FaQ</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Online Shop</h4>
-                    <ul>
-                        <li><a href="#">Books</a></li>
-                    </ul>
-                </div>
+
                 <div class="footer-col">
                     <h4>Rules</h4>
                     <ul>
@@ -344,7 +341,9 @@ include "gradeFinder.php";
         var studentName = document.getElementById("teacherName");
         studentName.innerHTML = getCookie('name');
     </script>
+
     <script src="studentAssessmentPageDarkMode.js"></script>
+
 
 </body>
 
