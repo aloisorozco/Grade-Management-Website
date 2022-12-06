@@ -183,10 +183,9 @@ function ajaxPost() {
 
 console.log(document.cookie);
 
-//From https://www.tabnine.com/academy/javascript/how-to-get-cookies/
 function getCookie(cName) {
     const name = cName + "=";
-    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cDecoded = decodeURIComponent(document.cookie);
     const cArr = cDecoded.split('; ');
     let res;
     cArr.forEach(val => {
