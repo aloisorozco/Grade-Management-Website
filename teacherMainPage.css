@@ -15,7 +15,8 @@
     --statstitle: #C1D3FE;
     --statstitletext: black;
     --addassignmentbody: #E2EAFC;
-    
+    --hovertext : black;
+    --hoverbutton: #C1D3FE;
 }
 
 .darkmode{
@@ -35,7 +36,8 @@
     --statstitle: #516188;
     --statstitletext: #C1D3FE;
     --addassignmentbody: #a4b5df;
-
+    --hovertext : #e6e9f1;
+    --hoverbutton: #8d9bbb;
 }
 
 html{
@@ -299,7 +301,8 @@ label {
     }
     
     #sideNav button:hover,button:active{
-        background-color: #C1D3FE;
+        background-color: var(--hoverbutton);
+        color: var(--hovertext);
     }
     
     #middleSection{
@@ -396,7 +399,7 @@ label {
         display: flex;
         flex-direction: column;
         margin-top: 1px;
-        background-color: #DEE2E6;
+        background-color: var(--sidenavbody);
         width: 50%;
         height: 93%;
         max-width: 200px;
@@ -407,7 +410,7 @@ label {
     }
     
     #sideNav h3{
-        background-color: #023E8A;
+        background-color: var(--sidenavtittle);
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -418,8 +421,8 @@ label {
     }
     
     #sideNav button{
-        background-color: #E2EAFC;
-        border-color: #C8C8C8;
+        background-color: var(--sidenavbutton);
+        border-color: var(--sidenavbuttontext);
         padding: 0.7em;
         margin-bottom: 0.7em;
         border: 0px;
@@ -427,20 +430,21 @@ label {
     }
     
     #sideNav button:hover,button:active{
-        background-color: #C1D3FE;
+        background-color: var(--hoverbutton);
+        color : var(--hovertext);
     }
     
     #middleSection{
         display: flex;
         flex-direction: column;
-        background-color: #C8C8C8;
+        background-color: var(--middlebox);
         height: 85%;
         margin-top: 3%;
         width: 85%;
     }
     
     #middleSection h3{
-        background-color:#023E8A ;
+        background-color:var(--middleboxtitle);
         margin-top: 0px;
         text-align: center;
         color: white;
@@ -458,7 +462,7 @@ label {
         flex-direction: column;
         text-align: center;
         justify-content: space-around;
-        background-color: #E2EAFC;
+        background-color: var(--addassignmentbody);
         margin-left: 5%;
         margin-right: 5%;
         height: 30%;
@@ -470,14 +474,14 @@ label {
     #middleSectionAssignment{
         display: flex;
         flex-direction: column;
-        background-color: #C8C8C8;
+        background-color: var(--middlebox);
         height: 87%;
         margin-top: 3%;
         width: 90%;
     }
     
     #middleSectionAssignment h3{
-        background-color:#023E8A ;
+        background-color:var(--middleboxtitle);
         margin-top: 0px;
         text-align: center;
         color: white;
