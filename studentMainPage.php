@@ -56,7 +56,6 @@ include "gradeFinder.php";
                         <h3>Menu</h3>
                         <ul>
                             <li><img src="ProfilePictures/profile.png" alt=""><a href="studentUpdateAccount.php">Profile</a></li>
-                            <li><img src="ProfilePictures/help.png" alt=""><a href="#">Settings</a></li>
                             <li><img src="ProfilePictures/logout.png" alt=""><a href="studentLogin.php">Logout</a></li>
                         </ul>
                     </div>
@@ -121,7 +120,9 @@ include "gradeFinder.php";
                     include "connectToDB.php";
                     // Get all students with a grade for this assignment
 
-                    class Assignment {};
+                    class Assignment
+                    {
+                    };
 
                     $q1 = "SELECT score FROM grade WHERE assignmentName = '{$_COOKIE['assignment']}' AND studentId= '{$_COOKIE['id']}' LIMIT 1";
                     $assignment = $pdo->query($q1)->fetchObject('Assignment');
@@ -164,7 +165,7 @@ include "gradeFinder.php";
                         }
 
                         $average = $total / $count;
-                        echo "<p>Class mean: " . $average . "%</p>";
+                        echo "<p>Class mean: " . round($average) . "%</p>";
 
                         sort($list);
 
@@ -176,7 +177,7 @@ include "gradeFinder.php";
                             $median = ($list[$half] + $list[$half - 1]) / 2;
                         }
 
-                        echo "<p>Class median: " . $median . "%</p>";
+                        echo "<p>Class median: " . round($median) . "%</p>";
 
 
                         $variance = 0.0;
@@ -186,7 +187,7 @@ include "gradeFinder.php";
                         }
 
                         $std = (float) sqrt($variance / $count);
-                        echo "<p>Standard deviation: " . $std . "%</p>";
+                        echo "<p>Standard deviation: " . round($std) . "%</p>";
                     }
 
                     ?>
