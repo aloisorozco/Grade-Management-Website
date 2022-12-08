@@ -177,7 +177,7 @@ include "gradeFinder.php";
                             $median = round(($list[$half] + $list[$half - 1]) / 2, 2);
                         }
 
-                        echo "<p>Class median: " . round($median) . "%</p>";
+                        echo "<p>Class median: " . $median . "%</p>";
 
 
                         $variance = 0.0;
