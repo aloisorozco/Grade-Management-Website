@@ -16,6 +16,7 @@ include "gradeFinder.php";
     <link rel="stylesheet" href="teacherMainPage.css">
     <link rel="stylesheet" href="profile_button.css">
     <link rel="stylesheet" href="footerTeacherMainPage.css">
+    <link rel="stylesheet" href="popup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -196,8 +197,8 @@ include "gradeFinder.php";
                                     $total = $total + $l;
                                 }
 
-                                            $average = round($total/$count,2);
-                                            echo "<span style='display: inline-block;' >Mean: " . $average ."%</span>";
+                                $average = round($total / $count, 2);
+                                echo "<span style='display: inline-block;' >Mean: " . $average . "%</span>";
 
                                 sort($list);
 
@@ -209,9 +210,10 @@ include "gradeFinder.php";
                                     $median = round(($list[$half] + $list[$half-1])/2,2);
                                 }
 
+                                
 
-                                            echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
-                                            
+                                echo "<span style='display: inline-block;'>Median: " . $median . "%</span>";
+
 
                                 $variance = 0.0;
 
@@ -219,13 +221,13 @@ include "gradeFinder.php";
                                     $variance += pow(($x - $average), 2);
                                 }
 
-                                            $std = round((float)sqrt($variance/$count),2);
-                                            echo "<span style='display: inline-block;'>STD: " . $std ."%</span>";
-                                        }
-                                        
-                                        ?>
-                                </div>
-                            <!--
+                                $std = round((float)sqrt($variance / $count), 2);
+                                echo "<span style='display: inline-block;'>STD: " . $std . "%</span>";
+                            }
+
+                            ?>
+                        </div>
+                        <!--
                             <p>Class mean: grade%</p>
                             <p>Class median: grade%</p>
                             <p>Standard deviation: grade%</p>
