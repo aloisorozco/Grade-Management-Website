@@ -164,7 +164,7 @@ include "gradeFinder.php";
                             $total = $total + $l;
                         }
 
-                        $average = $total / $count;
+                        $average = round($total / $count, 2);
                         echo "<p>Class mean: " . $average . "%</p>";
 
                         sort($list);
@@ -174,7 +174,7 @@ include "gradeFinder.php";
                         if ($count % 2 != 0) {
                             $median = $list[$half];
                         } else {
-                            $median = ($list[$half] + $list[$half - 1]) / 2;
+                            $median = round(($list[$half] + $list[$half - 1]) / 2, 2);
                         }
 
                         echo "<p>Class median: " . $median . "%</p>";
@@ -186,7 +186,7 @@ include "gradeFinder.php";
                             $variance += pow(($x - $average), 2);
                         }
 
-                        $std = (float) sqrt($variance / $count);
+                        $std = round((float) sqrt($variance / $count),2);
                         echo "<p>Standard deviation: " . $std . "%</p>";
                     }
 

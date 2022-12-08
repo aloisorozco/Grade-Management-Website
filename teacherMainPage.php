@@ -206,12 +206,9 @@ include "gradeFinder.php";
                                 if ($count % 2 != 0) {
                                     $median = $list[$half];
                                 } else {
-                                    $median = ($list[$half] + $list[$half - 1]) / 2;
+                                    $median = round(($list[$half] + $list[$half-1])/2,2);
                                 }
 
-                                            else{
-                                                $median = round(($list[$half] + $list[$half-1])/2,2);
-                                            }
 
                                             echo "<span style='display: inline-block;'>Median: " . $median ."%</span>";
                                             
